@@ -2,7 +2,7 @@
 import apisauce from 'apisauce'
 
 // our "constructor"
-const create = (baseURL = 'https://api.github.com/') => {
+const create = (baseURL = 'https://jsonplaceholder.typicode.com/') => {
   // ------
   // STEP 1
   // ------
