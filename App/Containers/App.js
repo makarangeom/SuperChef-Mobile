@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import RootContainer from './RootContainer'
 import createStore from '../Redux'
+import { YellowBox } from 'react-native'
 
 // create our store
 const store = createStore()
@@ -19,6 +20,7 @@ const store = createStore()
  */
 class App extends Component {
   render () {
+    YellowBox.ignoreWarnings(['Warning:']);
     return (
       <Provider store={store}>
         <RootContainer />

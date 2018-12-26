@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
  
-import { Platform, StyleSheet, View,Image,Text,ImageBackground,ScrollView,FlatList,TouchableOpacity } from 'react-native';
+import { Platform, StyleSheet, View,Image,Text,ImageBackground,ScrollView,FlatList,TouchableOpacity,Alert } from 'react-native';
  
 export default class MainCategoriesScreen extends Component{
     constructor(props){
@@ -16,34 +16,49 @@ export default class MainCategoriesScreen extends Component{
         }
     }
 
+    handClickCategory=(item, key)=>{
+        if(item.id == 1){
+            Alert.alert("Soup")
+        }
+        else if(item.id == 2){
+            Alert.alert("Fry")
+        }
+        else if(item.id == 3){
+            Alert.alert("Roast")
+        }
+        else if(item.id == 4){
+            Alert.alert("Dessert")
+        }
+        else if(item.id == 5){
+            Alert.alert("Other")
+        }
+    }
+
     _renderListCategories=({item, key})=>{
-        var img = item.img
         return(
-            <TouchableOpacity onPress={()=>this.handClickButton(item, key)} style={{width:'100%'}}>
+            <TouchableOpacity onPress={()=>this.handClickCategory(item, key)} style={{width:'100%'}}>
                 <ImageBackground
                     style={{width:'100%',height:120,marginBottom:10}}
                     source={{uri:item.img_uri}}
-                    // source={{uri:'http://1.bp.blogspot.com/-QT7_eXH7Ek4/TmcKKNVv-HI/AAAAAAAAGCc/67ipwWUL2z4/s400/300745_10150277303621526_536581525_8438262_1203344248_n.jpg'}}
                 >
                     <View style={{width: '100%', height: 120,backgroundColor:'rgba(0,0,0,.6)',justifyContent: 'center'}}>
                         <Text style={{textAlign:'center',color:'#ffffff',fontWeight:'bold'}}>{item.name}</Text>
                     </View>
                 </ImageBackground>
             </TouchableOpacity>
-            // <TouchableOpacity onPress={()=>this.handClickButton(item, key)} style={{height:50,backgroundColor:'#747474',alignItems:'center',justifyContent:'center',marginBottom:20}}><Text style={{fontSize:14,color:'#FFFFFF',fontWeight:'bold'}}>{item.name}</Text></TouchableOpacity>
         )
     }
     
     render() {
       return (
     
-            <View style={{flex:1,padding:10}}>
+            <View style={{flex:1,paddingTop:10,paddingLeft:10,paddingRight:10}}>
                 <ScrollView>
-                <FlatList
-                    data={this.state.data}
-                    renderItem={this._renderListCategories}
-                    keyExtractor={(item, index) => index}
-                />
+                    <FlatList
+                        data={this.state.data}
+                        renderItem={this._renderListCategories}
+                        keyExtractor={(item, index) => index}
+                    />
                             {/* <ImageBackground
                                 style={{width:'100%',height:120,marginBottom:10}}
                                 source={require('./Images/soup.jpg')}
