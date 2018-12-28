@@ -5,6 +5,7 @@ import HomeScreen from "../Containers/HomeScreen";
 import MainCategoriesScreen from "../Containers/MainCategoriesScreen";
 import SoupCategoryScreen from "../Containers/SoupCategoryScreen";
 import DetailFoodInfo from "../Containers/DetailFoodInfo";
+import TestModule from "../Containers/TestModule";
 
 export default class NavigationRouter extends Component{
     constructor(props){
@@ -19,8 +20,9 @@ export default class NavigationRouter extends Component{
                     <Scene key = "LaunchScreen" component = {LaunchScreen} title = "LaunchScreen" hideNavBar={true}  />
                     <Scene key = "HomeScreen" component = {HomeScreen} title = "HomeScreen" hideNavBar={true}  />
                     <Scene key = "MainCategoriesScreen" component = {MainCategoriesScreen} title = "MainCategoriesScreen" hideNavBar={true}  />
-                    <Scene initial={true} key = "SoupCategoryScreen" component = {SoupCategoryScreen} title = "SoupCategoryScreen" hideNavBar={true}  />
+                    <Scene key = "SoupCategoryScreen" component = {SoupCategoryScreen} title = "SoupCategoryScreen" hideNavBar={true}  />
                     <Scene key = "DetailFoodInfo" component = {DetailFoodInfo} title = "DetailFoodInfo" hideNavBar={true}  />
+                    <Scene initial={true} key = "TestModule" component = {TestModule} title = "TestModule" hideNavBar={true}  />
                 </Scene>
             </Router>
         );
