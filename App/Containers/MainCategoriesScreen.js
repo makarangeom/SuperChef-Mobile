@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
  
 import { Platform, StyleSheet, View,Image,Text,ImageBackground,ScrollView,FlatList,TouchableOpacity,Alert } from 'react-native';
+import {Actions} from 'react-native-router-flux'
  
 export default class MainCategoriesScreen extends Component{
     constructor(props){
@@ -18,7 +19,7 @@ export default class MainCategoriesScreen extends Component{
 
     handClickCategory=(item, key)=>{
         if(item.id == 1){
-            Alert.alert("Soup")
+            Actions.SoupCategoryScreen()
         }
         else if(item.id == 2){
             Alert.alert("Fry")

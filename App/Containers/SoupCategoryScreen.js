@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, View,Image,Text,ImageBackground,ScrollView,FlatList,TouchableOpacity,Alert,Dimensions } from 'react-native';
 import {Actions} from 'react-native-router-flux';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/Entypo'
+import Swiper from 'react-native-swiper';
+const myIcon = (<Icon name="star" size={18} color="yellow" backgroundColor="yellow" />)
+const fIcon = (<Icon name="star" size={15} color="yellow" backgroundColor="yellow" />)
+const arrowIcon = (<Icon name="chevron-right" size={15} color="red" />)
 
-const WIDTH = Dimensions.get('window').width
+const WIDTH = Dimensions.get('window').width 
 export default class SoupCategoryScreen extends Component{
     constructor(props){
         super(props);
@@ -19,21 +23,7 @@ export default class SoupCategoryScreen extends Component{
     }
 
     handClickCategory=(item, key)=>{
-        if(item.id == 1){
-            Actions.DetailFoodInfo()
-        }
-        else if(item.id == 2){
-            Alert.alert("Fry")
-        }
-        else if(item.id == 3){
-            Alert.alert("Roast")
-        }
-        else if(item.id == 4){
-            Alert.alert("Dessert")
-        }
-        else if(item.id == 5){
-            Alert.alert("Other")
-        }
+        Actions.DetailFoodInfo(item)
     }
 
     _renderSoupItems=({item, key})=>{
@@ -47,10 +37,10 @@ export default class SoupCategoryScreen extends Component{
                         source={{uri:item.img_uri}}
                     >
                         <View style={{width:'100%',marginTop:110,height:70,backgroundColor:'rgba(0,0,0,.6)',padding:5}}>
-                            <Text style={{flex:2,color:'#ffffff',fontWeight:'bold'}}>{item.name}</Text>
+                            <Text style={{flex:2.5,color:'#ffffff',fontWeight:'bold'}}>{item.name}</Text>
                             <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
-                                <Text style={{color:'#ffffff',fontWeight:'bold'}}>Star</Text>
-                                <Text style={{color:'#ffffff',fontWeight:'bold'}}>10 Viewer</Text>
+                                <Text style={{color:'#ffffff'}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
+                                <Text style={{color:'#ffffff',fontSize:13}}>10 Viewer</Text>
                             </View>
                         </View>
                     </ImageBackground>
@@ -63,22 +53,42 @@ export default class SoupCategoryScreen extends Component{
     render() {
       return (
             <View style={{height:'100%',paddingBottom:10,backgroundColor:'#F2EFF8'}}>
-                <View style={{}}>
-                    <ImageBackground
-                        style={{width:'100%',height:180}}
-                        // source={require('./Images/soup.jpg')}
-                        source={{uri:'http://1.bp.blogspot.com/-QT7_eXH7Ek4/TmcKKNVv-HI/AAAAAAAAGCc/67ipwWUL2z4/s400/300745_10150277303621526_536581525_8438262_1203344248_n.jpg'}}
+                <View style={{width:'100%',height:185}}>
+                    <Swiper style={{}} autoplay={true} autoplayTimeout = {3.5}
+                        dot={<View style={{backgroundColor: 'rgba(255,255,255,.3)', width: 10, height: 10, borderRadius:5, marginLeft:5, marginRight:5}} />}
+                        activeDot={<View style={{backgroundColor: 'red', width: 10, height: 10, borderRadius:5, marginLeft:5, marginRight:5}} />}
                     >
-                        <View style={{marginTop:100,width:'100%',height:80,backgroundColor:'rgba(0,0,0,.6)',padding:10}}>
-                            <Text style={{color:'#ffffff',fontWeight:'bold'}}>Soups</Text>
-                            <Text style={{color:'#ffffff'}}>Soup Black Chicken</Text>
-                        </View>
-                    </ImageBackground>
+                        {
+                            this.state.data.map((item, key)=>{
+                                return(
+                                    <View style={{}}>
+                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, key)} style={{width:'100%'}}>
+                                            <ImageBackground
+                                                style={{width:'100%',height:180}}
+                                                source={{uri:item.img_uri}}
+                                            >
+                                                <View style={{marginTop:100,width:'100%',height:80,backgroundColor:'rgba(0,0,0,.6)',padding:10}}>
+                                                    <View style={{flex:2.8}}>
+                                                        <Text style={{color:'#ffffff',fontWeight:'bold'}}>Soups</Text>
+                                                        <Text style={{color:'#ffffff'}}>Soup Black Chicken</Text>
+                                                    </View>
+                                                    <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
+                                                        <Text style={{color:'#ffffff'}}>{myIcon}{myIcon}{myIcon}{myIcon}{myIcon}</Text>
+                                                        <Text style={{color:'#ffffff'}}>10 Viewer</Text>
+                                                    </View>
+                                                </View>
+                                            </ImageBackground>
+                                        </TouchableOpacity>
+                                    </View> 
+                                )
+                            })
+                        }
+                    </Swiper>
                 </View>
 
                 <View style={{flexDirection:'row',justifyContent:'space-between',padding:10}}>
                     <Text style={{fontWeight:'bold',color:'red',textDecorationLine:'underline'}}>Categories</Text>
-                    <Text style={{fontWeight:'bold',color:'red',textDecorationLine:'underline'}}>Soups</Text>
+                    <Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',textDecorationLine:'underline'}}>Soups</Text>{arrowIcon}</Text>
                 </View>
 
                 <ScrollView horizontal={false} style={{paddingLeft:5,paddingRight:5}}>

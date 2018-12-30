@@ -1,60 +1,202 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  TouchableOpacity,
-  ImageBackground
-} from 'react-native';
+//import * as React, {Component} from 'react';
+import React, { Component } from 'react'
+import { View,StyleSheet,Dimensions,Text,Alert,ScrollView,ImageBackground,TouchableOpacity,Animated } from 'react-native';
+import { TabView, TabBar, SceneMap,TabViewAnimated } from 'react-native-tab-view';
+import Icon from 'react-native-vector-icons/Entypo'
 
-import Swiper from 'react-native-swiper';
-import Icon from 'react-native-vector-icons/FontAwesome';
-const myIcon = (<Icon name="rocket" size={30} color="#900" />)
+_headerTest=(item, key)=>{
+    return(
+        <View style={{flex:1,paddingTop:5,paddingBottom:5,paddingLeft:10,paddingRight:10,position:'absolute'}} >
+            <Text style={{color:'red',fontSize:15,fontWeight:'bold',textDecorationLine:'underline'}}>Ingredients</Text>
+              
+            
+            <Text style={{color:'red',fontSize:15,fontWeight:'bold',textDecorationLine:'underline'}}>How to cook?</Text>
+            <Text style={{color:'red',fontSize:15,fontWeight:'bold',textDecorationLine:'underline'}}>Cooking</Text>
+        </View>
+    )
+}
 
 export default class TestModule extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-            data:[
-                {id:1,name:'Soup',img:'./Images/soup.jpg',img_uri:'http://1.bp.blogspot.com/-QT7_eXH7Ek4/TmcKKNVv-HI/AAAAAAAAGCc/67ipwWUL2z4/s400/300745_10150277303621526_536581525_8438262_1203344248_n.jpg'},
-                {id:2,name:'Fry',img:'./Images/fry.jpg',img_uri:'http://taidynasty.com/wp-content/uploads/2016/08/General-Tsos-Chicken.jpg?w=640'},
-                {id:3,name:'Roast',img:'./Images/roast.jpg',img_uri:'http://eatdrinkpaleo.com.au/wp-content/uploads/2016/04/paleo-duck-pancakes_900-1.jpg'},
-                {id:4,name:'Dessert',img:'./Images/dessert.jpg',img_uri:'http://s-yoolk-images.s3.amazonaws.com/kh/product_catalog/product_images/large/323130?1468418940'},
-                {id:5,name:'Other',img:'./Images/other.jpg',img_uri:'http://s-yoolk-images.s3.amazonaws.com/kh/product_catalog/product_images/large/323130?1468418940'}, 
+  state = {
+    index: 0,
+    routes: [
+      { key: 'info', title: 'Info' },
+      { key: 'comment', title: 'Rate' },
+      { key: 'rate', title: 'Commemt' },
+    ],
+    DetailFoodInfo: [
+        {
+            ingredients: [
+                { id:'1',title:'Beef (baked meat)' },
+                { id:'2',title:'Salad' },
+                { id:'3',title:'tomato' },
+                { id:'3',title:'beans' },
+                { id:'3',title:'cucumber' },
+                { id:'3',title:'onion' },
+                { id:'3',title:'citrus' },
+                { id:'3',title:'Garlic' },
+                { id:'3',title:'oil' },
+                { id:'3',title:'sugar' },
+                { id:'3',title:'salt' },
+                { id:'3',title:'pepper' }, 
+                { id:'3',title:'oil' }, 
             ],
+            How_to_cook: [
+                { id:'1',title:'Cut beef are small pieces' },
+                { id:'3',title:'Wash clean vegetable and place salad in a bowl' },
+                { id:'2',title:'The tomatoes split into two or not splitting and hinged in the pan, as in the picture, then placed on the salad' },
+                { id:'3',title:'Hands of cucumber are spun (width) arranged in or out of tomato circles' },
+                { id:'3',title:'Cut onions are as thin as squares in the center of the tomato and cucumber' },
+                { id:'3',title:'Cut short peas, fry (put some oil in the pan, leave the hot sauce, then rip it, cover it and cover it for a while) fry it and squeeze on onion' },
+                { id:'3',title:'Fill garlic with peas.' },
+                { id:'3',title:'Beef washed and squeezed over the bean' },
+            ],
+            Cooking: 'Put a little oil in the pan and let the hot meat pour in sugar, salt, pepper, oil (put a little more shape), slightly flushed and then pulled out. If too long, it will make the beef tough.Make a glass of pepper juice with your cabbage. If you like the egg, you can fry the peppermint on the beef. If you like the juice or tomato juice, try to steam for a little while with beef and then eat with hot rice.',
         }
-    }
+        
+      ],
+  };
 
-    render(){
-        return (
-            <View style={{height:135}}>
-                <Swiper style={{}} autoplay={true} autoplayTimeout = {2.5}
-                    dot={<View style={{backgroundColor: 'rgba(255,255,255,.3)', width: 10, height: 10, borderRadius:5, marginLeft:5, marginRight:5}} />}
-                    activeDot={<View style={{backgroundColor: 'red', width: 10, height: 10, borderRadius:5, marginLeft:5, marginRight:5}} />}
-                >
+    _FoodInformationDetail=(item, key)=>{
+        return(
+            <ScrollView>
+                <View style={{flex:1,paddingTop:5,paddingBottom:5,paddingLeft:10,paddingRight:10}} >
+                    <Text style={{color:'red',fontSize:15,fontWeight:'bold',textDecorationLine:'underline'}}>Ingredients</Text>
+                        {
+                            this.state.DetailFoodInfo.map((item, key)=>{
+                                return(
+                                    item.ingredients.map((data, index)=>{
+                                        return(
+                                            <View style={{flexDirection: 'row',alignItems:'center',paddingRight:30}}> 
+                                                <Icon name="dot-single" size={25} /><Text style={{justifyContent:'center',alignItems:'center'}}>{data.title}</Text>
+                                            </View>   
+                                        )
+                                    })
+                                )
+                            })
+                        }
+                        
+                    <Text style={{color:'red',fontSize:15,fontWeight:'bold',textDecorationLine:'underline'}}>How to cook?</Text>
+                        {
+                            this.state.DetailFoodInfo.map((item, key)=>{
+                                return(
+                                    item.How_to_cook.map((data, index)=>{
+                                        return(
+                                            <View style={{flexDirection: 'row',alignItems:'center',paddingLeft:10,paddingRight:30}}> 
+                                                <Text style={{justifyContent:'center',alignItems:'center'}}><Text style={{fontWeight:'bold'}}>{index + 1}/.</Text>  {data.title}</Text>
+                                            </View>   
+                                        )
+                                    })
+                                )
+                            })
+                        }
+
+                    <Text style={{color:'red',fontSize:15,fontWeight:'bold',textDecorationLine:'underline'}}>Start Cooking</Text>
+                        {
+                            this.state.DetailFoodInfo.map((item, key)=>{
+                                return(
+                                    <View style={{flex:1,flexDirection: 'row',paddingLeft:10,paddingRight:30}}> 
+                                        <Text style={{justifyContent:'center',alignItems:'center'}}>{item.Cooking}</Text>
+                                    </View>   
+                                )
+                            })
+                        }
+                </View>
+            </ScrollView>
+        )
+    }
+    _FoodComment=(item, key)=>{
+        return(
+            <View style={{flex:1,paddingTop:5,paddingBottom:5,paddingLeft:10,paddingRight:10}} >
+                <Text style={{color:'red',fontSize:15,fontWeight:'bold',textDecorationLine:'underline'}}>Ingredients</Text>
                     {
-                        this.state.data.map((item, index)=>{
+                        this.state.routes.map((item, key)=>{
                             return(
-                                <View style={{}}>
-                                    <TouchableOpacity onPress={()=>this.handClickCategory()} style={{width:'100%'}}>
-                                        <ImageBackground
-                                            style={{width:'100%',height:120,marginBottom:10}}
-                                            source={{uri:item.img_uri}}
-                                        >
-                                            <View style={{width: '100%', height: 120,backgroundColor:'rgba(0,0,0,.6)',justifyContent: 'center'}}>
-                                                <Text style={{textAlign:'center',color:'#ffffff',fontWeight:'bold'}}>{myIcon}{item.name}</Text>
-                                            </View>
-                                        </ImageBackground>
-                                    </TouchableOpacity>
-                                </View> 
+                                <View style={{flexDirection: 'row',alignItems:'center'}}> 
+                                    <Icon name="dot-single" size={25} /><Text style={{justifyContent:'center',alignItems:'center'}}> Ingredients</Text>
+                                </View>   
                             )
                         })
                     }
-                </Swiper>
+                    
+                
+                <Text style={{color:'red',fontSize:15,fontWeight:'bold',textDecorationLine:'underline'}}>How to cook?</Text>
+                <Text style={{color:'red',fontSize:15,fontWeight:'bold',textDecorationLine:'underline'}}>Cooking</Text>
             </View>
-        );
+        )
     }
-}
 
-const styles = StyleSheet.create({})
+    _FoodRateStar=(item, key)=>{
+        return(
+            <View style={{flex:1,paddingTop:5,paddingBottom:5,paddingLeft:10,paddingRight:10}} >
+                <Text style={{color:'red',fontSize:15,fontWeight:'bold',textDecorationLine:'underline'}}>Ingredients</Text>
+                    {
+                        this.state.routes.map((item, key)=>{
+                            return(
+                                <View style={{flexDirection: 'row',alignItems:'center'}}> 
+                                    <Icon name="dot-single" size={25} /><Text style={{justifyContent:'center',alignItems:'center'}}> Ingredients</Text>
+                                </View>   
+                            )
+                        })
+                    }
+                    
+                
+                <Text style={{color:'red',fontSize:15,fontWeight:'bold',textDecorationLine:'underline'}}>How to cook?</Text>
+                <Text style={{color:'red',fontSize:15,fontWeight:'bold',textDecorationLine:'underline'}}>Cooking</Text>
+            </View>
+        )
+    }
+
+    _headerTest=(item, key)=>{
+        return(
+            <View style={{flex:1,paddingTop:5,paddingBottom:5,paddingLeft:10,paddingRight:10}} >
+                <Text style={{color:'red',fontSize:15,fontWeight:'bold',textDecorationLine:'underline'}}>Ingredients</Text>
+                  
+                
+                <Text style={{color:'red',fontSize:15,fontWeight:'bold',textDecorationLine:'underline'}}>How to cook?</Text>
+                <Text style={{color:'red',fontSize:15,fontWeight:'bold',textDecorationLine:'underline'}}>Cooking</Text>
+            </View>
+        )
+    }
+
+    _renderHeader(props) {
+        return (
+            <TabBar
+                {...props}
+                style={{backgroundColor:'red'}}
+                tabStyle={{}}
+                labelStyle={{}}
+            />
+        )
+      }
+
+  render() {
+    return (
+        
+        // <View> 
+            
+
+            // <WebView src="http://nativescript-vue.org/" />
+
+            <TabView
+                navigationState={this.state}
+                renderHeader={_headerTest}
+                renderScene={SceneMap({
+                    info: ()=>this._FoodInformationDetail(),
+                    comment: ()=>this._FoodRateStar(),
+                    rate: ()=>this._headerTest(),
+                })}
+                
+                onIndexChange={index => this.setState({ index })}
+                initialLayout={{ width: Dimensions.get('window').width }}
+            />
+
+            
+    );
+  }
+}
+const styles = StyleSheet.create({
+    scene: {
+      flex: 1,
+    },
+  });
