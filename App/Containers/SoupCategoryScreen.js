@@ -19,11 +19,16 @@ export default class SoupCategoryScreen extends Component{
                 {id:4,name:'Dessert',img:'./Images/dessert.jpg',img_uri:'http://s-yoolk-images.s3.amazonaws.com/kh/product_catalog/product_images/large/323130?1468418940'},
                 {id:5,name:'Other',img:'./Images/other.jpg',img_uri:'http://s-yoolk-images.s3.amazonaws.com/kh/product_catalog/product_images/large/323130?1468418940'}, 
             ],
+            catId: props.catId
         }
     }
 
+    componentDidMount(){
+        console.tron.log(this.state.catId)
+    }
+
     handClickCategory=(item, key)=>{
-        Actions.DetailFoodInfo(item)
+        Actions.MainDetailFoodInfo(item)
     }
 
     _renderSoupItems=({item, key})=>{

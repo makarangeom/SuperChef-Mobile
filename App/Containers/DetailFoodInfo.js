@@ -278,25 +278,17 @@ export default class DetailFoodInfo extends Component {
     }
   render() {
     return (
-        
-        // <View> 
+        <TabView
+            navigationState={this.state}
+            renderScene={SceneMap({
+                info: ()=>this._FoodInformationDetail(),
+                comment: ()=>this._FoodRateStar(),
+                rate: ()=>this._FoodComment(),
+            })}
             
-
-            // <WebView src="http://nativescript-vue.org/" />
-
-            <TabView
-                navigationState={this.state}
-                renderScene={SceneMap({
-                    info: ()=>this._FoodInformationDetail(),
-                    comment: ()=>this._FoodRateStar(),
-                    rate: ()=>this._FoodComment(),
-                })}
-                
-                onIndexChange={index => this.setState({ index })}
-                initialLayout={{ width: Dimensions.get('window').width }}
-            />
-
-            
+            onIndexChange={index => this.setState({ index })}
+            initialLayout={{ width: Dimensions.get('window').width }}
+        />
     );
   }
 }

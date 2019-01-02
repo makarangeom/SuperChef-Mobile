@@ -65,7 +65,7 @@ export default class TestModule extends Component {
                     main: { opacity:(2-ratio)/2 }
                 })}
             >
-            {/* <Main /> */}
+            <Main />
           </Drawer>
         )
       }
