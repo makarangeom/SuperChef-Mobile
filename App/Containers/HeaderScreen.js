@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {View,Text,ScrollView,TouchableHighlight,TextInput,StyleSheet,TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux'
 import HeaderActions from '../Redux/HeaderRedux'
+import {Actions} from 'react-native-router-flux'
 import { Header, Icon } from 'native-base';
 import _ from 'lodash'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
@@ -29,6 +30,18 @@ class HeaderScreen extends Component{
         }
     }
 
+    mainCategoriesScreen(){
+        Actions.MainCategoriesScreen();
+    }
+
+    categoryPopularFoodScreen(){
+        Actions.CategoryPopularFoodScreen();
+    }
+
+    handBacktoPrevious(){
+        Actions.pop();
+    }
+
     render(){
         let title_header = ""
         if(this.state.title){
@@ -42,12 +55,12 @@ class HeaderScreen extends Component{
                     <Header style={styles.headerStyle}>
                         <View style={{width: "10%"}}>
                             {this.state.statusIcon?
-                                    <TouchableOpacity onPress={this.mainMenuScreen} style={styles.leftIcon}>
-                                        <SimpleLineIcons name='menu' size={17} style={styles.iconColor} />
+                                    <TouchableOpacity onPress={this.categoryPopularFoodScreen} style={styles.leftIcon}>
+                                        <SimpleLineIcons name='menu' fontWeight={'bold'} size={16} style={styles.iconColor} />
                                     </TouchableOpacity>
                                 :
-                                    <TouchableOpacity onPress={this.backtoPrevious} style={styles.leftIcon}>
-                                        <FontAwesome name='angle-left' size={24} style={styles.iconColor} />
+                                    <TouchableOpacity onPress={this.handBacktoPrevious} style={styles.leftIcon}>
+                                        <FontAwesome name='angle-left' size={25} fontWeight={'bold'} style={styles.iconColor} />
                                     </TouchableOpacity>
                             }
                         </View>
@@ -66,15 +79,12 @@ class HeaderScreen extends Component{
                             </Text>
                         </View>
 
-                        <View style={{width: "45%", flexDirection: 'row', justifyContent: 'space-around'}}>
+                        <View style={{width: "45%", flexDirection: 'row', justifyContent: 'flex-end'}}>
                             <TouchableOpacity style={styles.rightIcon}>
-                                <FontAwesome name='file-o' size={17} style={styles.iconColor} />
+                                <FontAwesome name='search' size={17} style={styles.iconColor} />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.rightIcon}>
-                                <FontAwesome name='envelope-o' size={20} style={styles.iconColor} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.rightIcon}>
-                                <FontAwesome name='user-o' size={17} style={styles.iconColor} />
+                                <FontAwesome  onPress={this.mainCategoriesScreen} name='home' size={20} style={styles.iconColor} />
                             </TouchableOpacity>
                         </View>
                     </Header>
@@ -89,16 +99,20 @@ class HeaderScreen extends Component{
 const styles = StyleSheet.create({
     iconColor:
     {
-        color: '#FFFFFF'
+        color: '#FFFFFF',
+        fontWeight:'bold'
     },
     title:
     {
-        fontSize:20,
+        fontSize:18,
         color: '#FFFFFF',
+        paddingBottom:3
     },
     headerStyle: {
-        backgroundColor: '#668BB5', 
-        height: 55, 
+        paddingLeft:5,
+        paddingRight:-13,
+        backgroundColor: '#F90303', 
+        height: 45, 
         flexDirection: 'row', 
         alignItems:'center',
         justifyContent:'center'
