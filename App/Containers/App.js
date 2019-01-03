@@ -1,9 +1,11 @@
 import '../Config'
 import DebugConfig from '../Config/DebugConfig'
 import React, { Component } from 'react'
+import { Container } from 'native-base';
 import { Provider } from 'react-redux'
 import RootContainer from './RootContainer'
 import createStore from '../Redux'
+import HeaderScreen from './HeaderScreen'
 import { YellowBox } from 'react-native'
 
 // create our store
@@ -23,7 +25,10 @@ class App extends Component {
     YellowBox.ignoreWarnings(['Warning:']);
     return (
       <Provider store={store}>
-        <RootContainer />
+        <Container>
+          <HeaderScreen />
+          <RootContainer />
+        </Container>
       </Provider>
     )
   }

@@ -34,6 +34,8 @@ export const HeaderSelectors = {
 // request the data from an api
 
 export const setHeader = (state, { data }) =>{
+  console.tron.log(data)
+  console.tron.log("++++++++++++++")
   return state.merge({ fetching: false, error: null, data, payload: data })
 }
 export const stopSetHeader = (state, { data }) =>{

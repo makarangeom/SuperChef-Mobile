@@ -9,6 +9,7 @@ import SoupCategoryScreen from "../Containers/SoupCategoryScreen";
 import MainDetailFoodInfo from "../Containers/MainDetailFoodInfo";
 import DetailFoodInfo from "../Containers/DetailFoodInfo";
 import TestModule from "../Containers/TestModule";
+import HeaderScreen from "../Containers/HeaderScreen";
 
 class NavigationRouter extends Component{
     constructor(props){
@@ -26,11 +27,12 @@ class NavigationRouter extends Component{
                 <Scene key = "root">
                     <Scene key = "LaunchScreen" component = {LaunchScreen} title = "LaunchScreen" hideNavBar={true}  />
                     <Scene key = "HomeScreen" component = {HomeScreen} title = "HomeScreen" hideNavBar={true}  />
-                    <Scene initial={true} key = "MainCategoriesScreen" component = {MainCategoriesScreen} title = "MainCategoriesScreen" hideNavBar={true}  />
+                    <Scene key = "MainCategoriesScreen" component = {MainCategoriesScreen} title = "MainCategoriesScreen" hideNavBar={true}  />
                     <Scene key = "SoupCategoryScreen" component = {SoupCategoryScreen} title = "SoupCategoryScreen" hideNavBar={true}  />
                     <Scene key = "MainDetailFoodInfo" component = {MainDetailFoodInfo} title = "MainDetailFoodInfo" hideNavBar={true}  />
                     <Scene key = "DetailFoodInfo" component = {DetailFoodInfo} title = "DetailFoodInfo" hideNavBar={true}  />
-                    <Scene component = {TestModule} title = "TestModule" hideNavBar={true}  />
+                    <Scene initial={true} onEnter={()=>this.onEnter(true, false, 'I am working at the office')} key = "TestModule" component = {TestModule} title = "TestModule" hideNavBar={true}  />
+                    <Scene key = "HeaderScreen" component = {HeaderScreen} title = "HeaderScreen" hideNavBar={true}  />
                 </Scene>
             </Router>
         );

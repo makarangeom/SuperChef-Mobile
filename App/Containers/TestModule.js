@@ -7,72 +7,32 @@ import Icons from 'react-native-vector-icons/MaterialIcons'
 const fIcon = (<Icon name="star" size={20} color="#cccc00"/>)
 const star = (<Icon name="star" size={30} color="#707070"/>)
 import * as Progress from 'react-native-progress';
-import Drawer from 'react-native-drawer'
-import DetailFood from './LaunchScreen';
-import Main from './MainDetailFoodInfo';
+
 const Window = Dimensions.get('window');
-const drawerStyles = {
-    drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
-    main: {paddingLeft: 3},
-  }
 export default class TestModule extends Component {
-    state={
-        drawerOpen: false,
-        drawerDisabled: false,
-      };
-      closeDrawer = () => {
-        this._drawer.close()
-      };
-      openDrawer = () => {
-        this._drawer.open()
-      };
-      render() {
-        return (
-          <Drawer
-                ref={(ref) => this._drawer = ref}
-                type="overlay"
-                content={
-                    <DetailFood closeDrawer={this.closeDrawer} />
-                }
-                acceptDoubleTap={false}
-                // openDrawerOffset={0.35}
-                styles={{main: {shadowColor: "#000000", shadowOpacity: 0.3, shadowRadius: 15}}}
-                onOpen={() => {
-                    console.log('onopen')
-                    this.setState({drawerOpen: true})
-                }}
-                onClose={() => {
-                    console.log('onclose')
-                    this.setState({drawerOpen: false})
-                }}
-                captureGestures={false}
-                // tapToClose={false}
-                tweenDuration={50}
-                negotiatePan={true}
-                panThreshold={0.08}
-                panOpenMask={0.35}
-                disabled={this.state.drawerDisabled}
-                // tweenHandler={Drawer.tweenPresets.parallax}
-                type="overlay"
-                
-                // content={<ControlPanel />}
-                tapToClose={true}
-                openDrawerOffset={0.2} // 20% gap on the right side of drawer
-                panCloseMask={0.2}
-                closedDrawerOffset={-3}
-                // styles={drawerStyles}
-                tweenHandler={(ratio) => ({
-                    main: { opacity:(2-ratio)/2 }
-                })}
-            >
-            {/* <Main /> */}
-          </Drawer>
-        )
-      }
+  state = {
+    index: 0,
+    numComments: 0,
+  };
+
+   
+  render() {
+    return (
+        <View>
+            <View style={{width:Window.width,height:Window.height,backgroundColor:'rgba(0,0,0,.4)',alignItems:'center',justifyContent:'center'}}>
+                    <Image
+                    style={{height:110,width:110}}
+                    borderRadius={100}
+                    source={require('./Images/wallpaper.png')}
+                />
+                <Text style={{flex:2.5,color:'#ffffff',fontWeight:'bold'}}>sfdsdf</Text>
+            </View>
+        </View>
+    );
+  }
 }
 const styles = StyleSheet.create({
-    container: {
-      padding: 20,
+    scene: {
       flex: 1,
-    }
-  })
+    },
+  });
