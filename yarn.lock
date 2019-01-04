@@ -7449,6 +7449,12 @@ react-modal@^3.3.2:
     react-lifecycles-compat "^3.0.0"
     warning "^3.0.0"
 
+react-native-admob@^2.0.0-beta.5:
+  version "2.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/react-native-admob/-/react-native-admob-2.0.0-beta.5.tgz#f83fd6144c5dd3e708e937793f41c0c50db86682"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-compat@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-compat/-/react-native-compat-1.0.0.tgz#491dbd8a0105ac061b8d0d926463ce6a3dff33bc"
