@@ -29,12 +29,12 @@ class NavigationRouter extends Component{
                     <Scene key = "LaunchScreen" component = {LaunchScreen} title = "LaunchScreen" hideNavBar={true}  />
                     <Scene key = "HomeScreen" component = {HomeScreen} title = "HomeScreen" hideNavBar={true}  />
                     <Scene onEnter={()=>this.onEnter(false, false, '')} key = "MainCategoriesScreen" component = {MainCategoriesScreen} title = "MainCategoriesScreen" hideNavBar={true}  />
-                    <Scene initial={true} onEnter={()=>this.onEnter(true, true, 'Soups')} key = "SoupCategoryScreen" component = {SoupCategoryScreen} title = "SoupCategoryScreen" hideNavBar={true}  />
+                    <Scene onEnter={()=>this.onEnter(true, true, 'Soups')} key = "SoupCategoryScreen" component = {SoupCategoryScreen} title = "SoupCategoryScreen" hideNavBar={true}  />
                     <Scene onEnter={()=>this.onEnter(true, false, 'Food Information Detail')} key = "MainDetailFoodInfo" component = {MainDetailFoodInfo} title = "MainDetailFoodInfo" hideNavBar={true}  />
                     <Scene onEnter={()=>this.onEnter(false, false, 'DetailFoodInfo')} key = "DetailFoodInfo" component = {DetailFoodInfo} title = "DetailFoodInfo" hideNavBar={true}  />
                     <Scene onEnter={()=>this.onEnter(true, false, 'I am working at the office')} key = "TestModule" component = {TestModule} title = "TestModule" hideNavBar={true}  />
                     <Scene onEnter={()=>this.onEnter(true, false, 'I am working at the office')} key = "HeaderScreen" component = {HeaderScreen} title = "HeaderScreen" hideNavBar={true}  />
-                    <Scene onEnter={()=>this.onEnter(true, true, 'Popular Food')} key = "CategoryPopularFoodScreen" component = {CategoryPopularFoodScreen} title = "CategoryPopularFoodScreen" hideNavBar={true}  />
+                    <Scene initial={true} onEnter={()=>this.onEnter(true, true, 'Popular Food')} key = "CategoryPopularFoodScreen" component = {CategoryPopularFoodScreen} title = "CategoryPopularFoodScreen" hideNavBar={true}  />
                 </Scene>
             </Router>
         );

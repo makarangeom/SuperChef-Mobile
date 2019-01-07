@@ -34,18 +34,18 @@ export default class CategoryPopularFoodScreen extends Component{
     _renderSoupItems=({item, key})=>{
         return(
             <View style={{width:'50%',paddingRight:5,paddingLeft:5,paddingBottom:10}}>
-                <TouchableOpacity onPress={()=>this.handClickCategory(item, key)}>
+                <TouchableOpacity onPress={()=>this.handClickCategory(item, key)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
                     <ImageBackground
-                        style={{height:180}}
+                        style={{height:200}}
                         borderTopLeftRadius={8}
                         borderTopRightRadius={8}
                         source={{uri:item.img_uri}}
                     >
-                        <View style={{width:'100%',marginTop:110,height:70,backgroundColor:'rgba(0,0,0,.6)',padding:5}}>
-                            <Text style={{flex:2.5,color:'#ffffff',fontWeight:'bold'}}>{item.name}</Text>
+                        <View style={{width:'100%',marginTop:130,height:70,backgroundColor:'#FFFFFF',padding:5}}>
+                            <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
                             <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
-                                <Text style={{color:'#ffffff'}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
-                                <Text style={{color:'#ffffff',fontSize:13}}>10 Viewer</Text>
+                                <Text style={{}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
+                                <Text style={{color:'#707070',fontSize:13}}>10 Viewer</Text>
                             </View>
                         </View>
                     </ImageBackground>
@@ -58,32 +58,23 @@ export default class CategoryPopularFoodScreen extends Component{
     render() {
       return (
             <View style={{height:'100%',paddingBottom:10,backgroundColor:'#F2EFF8'}}>
-                <View style={{width:'100%',height:185}}>
-                    <Swiper style={{}} autoplay={true} autoplayTimeout = {3.5}
-                        dot={<View style={{backgroundColor: 'rgba(255,255,255,.3)', width: 10, height: 10, borderRadius:5, marginLeft:5, marginRight:5}} />}
-                        activeDot={<View style={{backgroundColor: 'red', width: 10, height: 10, borderRadius:5, marginLeft:5, marginRight:5}} />}
+                <View style={{width:'100%',height:100,borderBottomWidth:2,borderColor:'#d6d7da'}}>
+                    <Swiper style={{}} autoplay={true} autoplayTimeout = {3.5} showsButtons={true}
+                        dot={<View style={{width: 0, height: 0}} />}
+                        activeDot={<View style={{width: 0, height: 0}} />}
+                        prevButton={<Text style={{color:'#707070',fontSize:40}}>‹</Text>}
+                        nextButton={<Text style={{color:'#707070',fontSize:40}}>›</Text>}
                     >
                         {
                             this.state.data.map((item, key)=>{
                                 return(
                                     <View style={{}}>
-                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, key)} style={{width:'100%'}}>
-                                            <ImageBackground
-                                                style={{width:'100%',height:180}}
-                                                source={{uri:item.img_uri}}
-                                            >
-                                                <View style={{marginTop:100,width:'100%',height:80,backgroundColor:'rgba(0,0,0,.6)',padding:10}}>
-                                                    <View style={{flex:2.8}}>
-                                                        <Text style={{color:'#ffffff',fontWeight:'bold'}}>Soups</Text>
-                                                        <Text style={{color:'#ffffff'}}>Soup Black Chicken</Text>
-                                                    </View>
-                                                    <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
-                                                        <Text style={{color:'#ffffff'}}>{myIcon}{myIcon}{myIcon}{myIcon}{myIcon}</Text>
-                                                        <Text style={{color:'#ffffff'}}>10 Viewer</Text>
-                                                    </View>
-                                                </View>
-                                            </ImageBackground>
-                                        </TouchableOpacity>
+                                        <View style={{height:100,backgroundColor:'#ffffff',padding:10}}>
+                                            <View style={{flex:2.8}}>
+                                                <Text style={{color:'#707070',fontWeight:'bold'}}>Soups</Text>
+                                                <Text style={{color:'#707070'}}>Soup Black Chicken</Text>
+                                            </View>
+                                        </View>
                                     </View> 
                                 )
                             })
@@ -91,19 +82,170 @@ export default class CategoryPopularFoodScreen extends Component{
                     </Swiper>
                 </View>
 
-                <View style={{flexDirection:'row',justifyContent:'flex-start',padding:10}}>
-                    <Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Popular Items</Text>{arrowIcon}</Text>
-                </View>
+                
 
-                <ScrollView horizontal={false} style={{paddingLeft:5,paddingRight:5}}>
-                    <FlatList
-                        data={this.state.data}
-                        numColumns={2}
-                        renderItem={this._renderSoupItems}
-                        keyExtractor={(item, index) => index}
-                    />
+            <ScrollView horizontal={false}>
+                <View style={{flexDirection:'row',justifyContent:'flex-start',padding:10}}>
+                    <Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Soup Categories</Text>{arrowIcon}</Text>
+                </View>
+                <ScrollView horizontal={true}>
+                    <View style={{flexDirection:'row'}}>
+                        {
+                            this.state.data.map((item, index)=>{
+                                return(
+                                    <View style={{width:180,paddingRight:5,paddingBottom:10}}>
+                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, key)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
+                                            <ImageBackground
+                                                style={{height:150}}
+                                                borderTopLeftRadius={8}
+                                                borderTopRightRadius={8}
+                                                source={{uri:item.img_uri}}
+                                            >
+                                                <View style={{width:'100%',marginTop:90,height:60,backgroundColor:'#FFFFFF',padding:5}}>
+                                                    <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
+                                                    <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
+                                                        <Text style={{}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
+                                                        <Text style={{color:'#707070',fontSize:13}}>10 Viewer</Text>
+                                                    </View>
+                                                </View>
+                                            </ImageBackground>
+                                        </TouchableOpacity>
+                                    </View>
+                                )
+                            })
+                        }
+                    </View>
                 </ScrollView>
-            </View>
+
+                <View style={{flexDirection:'row',justifyContent:'flex-start',padding:10}}>
+                    <Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Fry Categories</Text>{arrowIcon}</Text>
+                </View>
+                <ScrollView horizontal={true}>
+                    <View style={{flexDirection:'row'}}>
+                        {
+                            this.state.data.map((item, index)=>{
+                                return(
+                                    <View style={{width:180,paddingRight:5,paddingBottom:10}}>
+                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, key)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
+                                            <ImageBackground
+                                                style={{height:150}}
+                                                borderTopLeftRadius={8}
+                                                borderTopRightRadius={8}
+                                                source={{uri:item.img_uri}}
+                                            >
+                                                <View style={{width:'100%',marginTop:90,height:60,backgroundColor:'#FFFFFF',padding:5}}>
+                                                    <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
+                                                    <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
+                                                        <Text style={{}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
+                                                        <Text style={{color:'#707070',fontSize:13}}>10 Viewer</Text>
+                                                    </View>
+                                                </View>
+                                            </ImageBackground>
+                                        </TouchableOpacity>
+                                    </View>
+                                )
+                            })
+                        }
+                    </View>
+                </ScrollView>
+
+                <View style={{flexDirection:'row',justifyContent:'flex-start',padding:10}}>
+                    <Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Roast Categories</Text>{arrowIcon}</Text>
+                </View>
+                <ScrollView horizontal={true}>
+                    <View style={{flexDirection:'row'}}>
+                        {
+                            this.state.data.map((item, index)=>{
+                                return(
+                                    <View style={{width:180,paddingRight:5,paddingBottom:10}}>
+                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, key)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
+                                            <ImageBackground
+                                                style={{height:150}}
+                                                borderTopLeftRadius={8}
+                                                borderTopRightRadius={8}
+                                                source={{uri:item.img_uri}}
+                                            >
+                                                <View style={{width:'100%',marginTop:90,height:60,backgroundColor:'#FFFFFF',padding:5}}>
+                                                    <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
+                                                    <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
+                                                        <Text style={{}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
+                                                        <Text style={{color:'#707070',fontSize:13}}>10 Viewer</Text>
+                                                    </View>
+                                                </View>
+                                            </ImageBackground>
+                                        </TouchableOpacity>
+                                    </View>
+                                )
+                            })
+                        }
+                    </View>
+                </ScrollView>
+
+                <View style={{flexDirection:'row',justifyContent:'flex-start',padding:10}}>
+                    <Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Dessert Categories</Text>{arrowIcon}</Text>
+                </View>
+                <ScrollView horizontal={true}>
+                    <View style={{flexDirection:'row'}}>
+                        {
+                            this.state.data.map((item, index)=>{
+                                return(
+                                    <View style={{width:180,paddingRight:5,paddingBottom:10}}>
+                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, key)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
+                                            <ImageBackground
+                                                style={{height:150}}
+                                                borderTopLeftRadius={8}
+                                                borderTopRightRadius={8}
+                                                source={{uri:item.img_uri}}
+                                            >
+                                                <View style={{width:'100%',marginTop:90,height:60,backgroundColor:'#FFFFFF',padding:5}}>
+                                                    <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
+                                                    <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
+                                                        <Text style={{}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
+                                                        <Text style={{color:'#707070',fontSize:13}}>10 Viewer</Text>
+                                                    </View>
+                                                </View>
+                                            </ImageBackground>
+                                        </TouchableOpacity>
+                                    </View>
+                                )
+                            })
+                        }
+                    </View>
+                </ScrollView>
+
+                <View style={{flexDirection:'row',justifyContent:'flex-start',padding:10}}>
+                    <Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Other Categories</Text>{arrowIcon}</Text>
+                </View>
+                <ScrollView horizontal={true}>
+                    <View style={{flexDirection:'row'}}>
+                        {
+                            this.state.data.map((item, index)=>{
+                                return(
+                                    <View style={{width:180,paddingRight:5,paddingBottom:10}}>
+                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, key)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
+                                            <ImageBackground
+                                                style={{height:150}}
+                                                borderTopLeftRadius={8}
+                                                borderTopRightRadius={8}
+                                                source={{uri:item.img_uri}}
+                                            >
+                                                <View style={{width:'100%',marginTop:90,height:60,backgroundColor:'#FFFFFF',padding:5}}>
+                                                    <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
+                                                    <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
+                                                        <Text style={{}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
+                                                        <Text style={{color:'#707070',fontSize:13}}>10 Viewer</Text>
+                                                    </View>
+                                                </View>
+                                            </ImageBackground>
+                                        </TouchableOpacity>
+                                    </View>
+                                )
+                            })
+                        }
+                    </View>
+                </ScrollView>
+            </ScrollView>
+        </View>
 
       );
     }
