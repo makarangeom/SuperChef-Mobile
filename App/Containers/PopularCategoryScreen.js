@@ -8,7 +8,7 @@ const fIcon = (<Icon name="star" size={15} color="yellow" backgroundColor="yello
 const arrowIcon = (<Icon name="chevron-right" size={15} color="red" />)
 
 const WIDTH = Dimensions.get('window').width 
-export default class CategoryPopularFoodScreen extends Component{
+export default class PopularCategoryScreen extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -54,6 +54,10 @@ export default class CategoryPopularFoodScreen extends Component{
             
         )
     }
+
+    SoupCategoryScreen(){
+        Actions.SoupCategoryScreen()
+    }
     
     render() {
       return (
@@ -82,11 +86,9 @@ export default class CategoryPopularFoodScreen extends Component{
                     </Swiper>
                 </View>
 
-                
-
-            <ScrollView horizontal={false}>
+            <ScrollView horizontal={false} style={{paddingLeft:5}}>
                 <View style={{flexDirection:'row',justifyContent:'flex-start',padding:10}}>
-                    <Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Soup Categories</Text>{arrowIcon}</Text>
+                    <TouchableOpacity onPress={()=>this.SoupCategoryScreen()}><Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Soup Categories</Text>{arrowIcon}</Text></TouchableOpacity>
                 </View>
                 <ScrollView horizontal={true}>
                     <View style={{flexDirection:'row'}}>

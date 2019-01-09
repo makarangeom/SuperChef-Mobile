@@ -7,6 +7,7 @@ import { Header, Icon } from 'native-base';
 import _ from 'lodash'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 class HeaderScreen extends Component{
     constructor(props){
@@ -34,8 +35,12 @@ class HeaderScreen extends Component{
         Actions.MainCategoriesScreen();
     }
 
-    categoryPopularFoodScreen(){
-        Actions.CategoryPopularFoodScreen();
+    mainMenuScreen(){
+        Actions.MainMenuScreen();
+    }
+
+    popularCategoryScreen(){
+        Actions.PopularCategoryScreen();
     }
 
     handBacktoPrevious(){
@@ -55,7 +60,7 @@ class HeaderScreen extends Component{
                     <Header style={styles.headerStyle}>
                         <View style={{width: "10%"}}>
                             {this.state.statusIcon?
-                                    <TouchableOpacity onPress={this.categoryPopularFoodScreen} style={styles.leftIcon}>
+                                    <TouchableOpacity onPress={this.mainMenuScreen} style={styles.leftIcon}>
                                         <SimpleLineIcons name='menu' fontWeight={'bold'} size={16} style={styles.iconColor} />
                                     </TouchableOpacity>
                                 :
@@ -81,10 +86,10 @@ class HeaderScreen extends Component{
 
                         <View style={{width: "45%", flexDirection: 'row', justifyContent: 'flex-end'}}>
                             <TouchableOpacity style={styles.rightIcon}>
-                                <FontAwesome name='search' size={17} style={styles.iconColor} />
+                                <MaterialIcons onPress={this.mainCategoriesScreen} name='restaurant-menu' size={20} style={styles.iconColor} />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.rightIcon}>
-                                <FontAwesome  onPress={this.mainCategoriesScreen} name='home' size={20} style={styles.iconColor} />
+                                <FontAwesome onPress={this.popularCategoryScreen} name='home' size={20} style={styles.iconColor} />
                             </TouchableOpacity>
                         </View>
                     </Header>
