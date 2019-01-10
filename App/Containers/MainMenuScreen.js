@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { View,StyleSheet,Dimensions,Text,Alert,ScrollView,ImageBackground,TouchableOpacity,Animated,Image,TextInput} from 'react-native';
 import {Icon} from 'native-base'
+import { Actions } from 'react-native-router-flux';
 
 const Window = Dimensions.get('window');
 export default class MainMenuScreen extends Component {
@@ -10,47 +11,64 @@ export default class MainMenuScreen extends Component {
     numComments: 0,
     eachMenuItem:[
         {
+            id:1,
             name:'Home',
             type:'FontAwesome',
             name_icon:'home',
         },
         {
+            id:2,
             name:'Menu',
             type:'MaterialIcons',
             name_icon:'menu',
         },
         {
+            id:3,
             name:'About',
             type:'MaterialIcons',
             name_icon:'info',
         },
         {
+            id:4,
             name:'Contact',
             type:'MaterialCommunityIcons',
             name_icon:'notebook',
         },
         {
+            id:5,
             name:'Support',
             type:'FontAwesome5',
             name_icon:'donate',
         },
         {
+            id:6,
             name:'Feedback',
             type:'MaterialIcons',
             name_icon:'feedback',
         },
         {
+            id:7,
             name:'Setting',
             type:'MaterialIcons',
             name_icon:'settings',
         },
         {
+            id:8,
             name:'Sign Out',
-            type:'Entypo',
-            name_icon:'log-out',
+            type:'MaterialCommunityIcons',
+            name_icon:'logout',
         }
     ]
   };
+
+  handClickEachMenu=(item)=>{
+    if(item.id == 1){
+        Actions.PopularCategoryScreen()
+    }
+    else if(item.id == 2){
+        Actions.MainCategoriesScreen()
+    }
+  }
 
    
   render() {
@@ -81,10 +99,10 @@ export default class MainMenuScreen extends Component {
                         {
                             this.state.eachMenuItem.map((item, index)=>{
                                 return(
-                                    <View style={{flexDirection:'row',paddingBottom:15}}>
+                                    <TouchableOpacity onPress={()=>this.handClickEachMenu(item)} style={{flexDirection:'row',paddingBottom:15}}>
                                         <Icon type={item.type} name={item.name_icon} style={{color:'#fff',fontSize:23,paddingRight:15,fontWeight:'bold'}} />
                                         <Text style={{fontSize:16,color:'#fff'}}>{item.name}</Text>
-                                    </View>
+                                    </TouchableOpacity>
                                 )
                             })
                         }
@@ -93,7 +111,7 @@ export default class MainMenuScreen extends Component {
                     
 
                     <View style={{flex:1,flexDirection:'row',justifyContent:'space-between',borderTopWidth:1,borderTopColor:'#fff',padding:10}}>
-                        <Text style={{color:'#ffffff',fontWeight:'bold'}}>Develop By</Text>
+                        <Text style={{color:'#ffffff',fontWeight:'bold'}}>Nanoo Black</Text>
                         <Text style={{color:'#ffffff',fontWeight:'bold'}}>Version 0.0.1</Text>
                     </View>
                 </View>
