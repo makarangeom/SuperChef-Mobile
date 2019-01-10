@@ -30,14 +30,19 @@ export default class MainMenuScreen extends Component {
             name_icon:'notebook',
         },
         {
-            name:'Setting',
-            type:'MaterialIcons',
-            name_icon:'settings',
+            name:'Support',
+            type:'FontAwesome5',
+            name_icon:'donate',
         },
         {
             name:'Feedback',
             type:'MaterialIcons',
             name_icon:'feedback',
+        },
+        {
+            name:'Setting',
+            type:'MaterialIcons',
+            name_icon:'settings',
         },
         {
             name:'Sign Out',
@@ -89,7 +94,7 @@ export default class MainMenuScreen extends Component {
 
                     <View style={{flex:1,flexDirection:'row',justifyContent:'space-between',borderTopWidth:1,borderTopColor:'#fff',padding:10}}>
                         <Text style={{color:'#ffffff',fontWeight:'bold'}}>Develop By</Text>
-                        <Text style={{color:'#ffffff',fontWeight:'bold'}}>Version</Text>
+                        <Text style={{color:'#ffffff',fontWeight:'bold'}}>Version 0.0.1</Text>
                     </View>
                 </View>
             </ImageBackground>
