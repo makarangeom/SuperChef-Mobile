@@ -8,7 +8,7 @@ const fIcon = (<Icon name="star" size={20} color="#cccc00"/>)
 const star = (<Icon name="star" size={30} color="#707070"/>)
 import * as Progress from 'react-native-progress';
 import Drawer from 'react-native-drawer'
-import DetailFood from './LaunchScreen';
+import DetailFood from './MainMenuScreen';
 import Main from './MainDetailFoodInfo';
 const Window = Dimensions.get('window');
 const drawerStyles = {
@@ -31,11 +31,8 @@ export default class NavigationDrawer extends Component {
           <Drawer
                 ref={(ref) => this._drawer = ref}
                 type="overlay"
-                content={
-                    <DetailFood closeDrawer={this.closeDrawer} />
-                }
+                content={<DetailFood closeDrawer={this.closeDrawer} />}
                 acceptDoubleTap={false}
-                // openDrawerOffset={0.35}
                 styles={{main: {shadowColor: "#000000", shadowOpacity: 0.3, shadowRadius: 15}}}
                 onOpen={() => {
                     console.log('onopen')
@@ -46,24 +43,17 @@ export default class NavigationDrawer extends Component {
                     this.setState({drawerOpen: false})
                 }}
                 captureGestures={false}
-                // tapToClose={false}
                 tweenDuration={50}
                 negotiatePan={true}
                 panThreshold={0.08}
                 panOpenMask={0.35}
                 disabled={this.state.drawerDisabled}
-                // tweenHandler={Drawer.tweenPresets.parallax}
                 type="overlay"
-                
-                // content={<ControlPanel />}
                 tapToClose={true}
-                openDrawerOffset={0.2} // 20% gap on the right side of drawer
+                openDrawerOffset={0.3} // 20% gap on the right side of drawer
                 panCloseMask={0.2}
                 closedDrawerOffset={-3}
-                // styles={drawerStyles}
-                tweenHandler={(ratio) => ({
-                    main: { opacity:(2-ratio)/2 }
-                })}
+                tweenHandler={(ratio) => ({ main: { opacity:(2-ratio)/2 } })}
             >
             {/* <Main /> */}
           </Drawer>

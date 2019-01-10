@@ -45,7 +45,7 @@ export default class SoupCategoryScreen extends Component{
                             <Text style={{flex:2.5,color:'#ffffff',fontWeight:'bold'}}>{item.name}</Text>
                             <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
                                 <Text style={{color:'#ffffff'}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
-                                <Text style={{color:'#ffffff',fontSize:13}}>10 Viewer</Text>
+                                <Text style={{color:'#ffffff',fontSize:13}}>10 Views</Text>
                             </View>
                         </View>
                     </ImageBackground>
@@ -79,7 +79,7 @@ export default class SoupCategoryScreen extends Component{
                                                     </View>
                                                     <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
                                                         <Text style={{color:'#ffffff'}}>{myIcon}{myIcon}{myIcon}{myIcon}{myIcon}</Text>
-                                                        <Text style={{color:'#ffffff'}}>10 Viewer</Text>
+                                                        <Text style={{color:'#ffffff'}}>10 Views</Text>
                                                     </View>
                                                 </View>
                                             </ImageBackground>

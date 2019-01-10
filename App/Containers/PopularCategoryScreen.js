@@ -27,14 +27,14 @@ export default class PopularCategoryScreen extends Component{
         console.tron.log(this.state.catId)
     }
 
-    handClickCategory=(item, key)=>{
+    handClickCategory=(item, index)=>{
         Actions.MainDetailFoodInfo(item)
     }
 
-    _renderSoupItems=({item, key})=>{
+    _renderSoupItems=({item, index})=>{
         return(
             <View style={{width:'50%',paddingRight:5,paddingLeft:5,paddingBottom:10}}>
-                <TouchableOpacity onPress={()=>this.handClickCategory(item, key)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
+                <TouchableOpacity onPress={()=>this.handClickCategory(item, index)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
                     <ImageBackground
                         style={{height:200}}
                         borderTopLeftRadius={8}
@@ -45,7 +45,7 @@ export default class PopularCategoryScreen extends Component{
                             <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
                             <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
                                 <Text style={{}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
-                                <Text style={{color:'#707070',fontSize:13}}>10 Viewer</Text>
+                                <Text style={{color:'#707070',fontSize:13}}>10 Views</Text>
                             </View>
                         </View>
                     </ImageBackground>
@@ -70,7 +70,7 @@ export default class PopularCategoryScreen extends Component{
                         nextButton={<Text style={{color:'#707070',fontSize:40}}>›</Text>}
                     >
                         {
-                            this.state.data.map((item, key)=>{
+                            this.state.data.map((item, index)=>{
                                 return(
                                     <View style={{}}>
                                         <View style={{height:100,backgroundColor:'#ffffff',padding:10}}>
@@ -96,7 +96,7 @@ export default class PopularCategoryScreen extends Component{
                             this.state.data.map((item, index)=>{
                                 return(
                                     <View style={{width:180,paddingRight:5,paddingBottom:10}}>
-                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, key)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
+                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, index)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
                                             <ImageBackground
                                                 style={{height:150}}
                                                 borderTopLeftRadius={8}
@@ -107,7 +107,7 @@ export default class PopularCategoryScreen extends Component{
                                                     <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
                                                     <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
                                                         <Text style={{}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
-                                                        <Text style={{color:'#707070',fontSize:13}}>10 Viewer</Text>
+                                                        <Text style={{color:'#707070',fontSize:13}}>10 Views</Text>
                                                     </View>
                                                 </View>
                                             </ImageBackground>
@@ -128,7 +128,7 @@ export default class PopularCategoryScreen extends Component{
                             this.state.data.map((item, index)=>{
                                 return(
                                     <View style={{width:180,paddingRight:5,paddingBottom:10}}>
-                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, key)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
+                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, index)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
                                             <ImageBackground
                                                 style={{height:150}}
                                                 borderTopLeftRadius={8}
@@ -139,7 +139,7 @@ export default class PopularCategoryScreen extends Component{
                                                     <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
                                                     <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
                                                         <Text style={{}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
-                                                        <Text style={{color:'#707070',fontSize:13}}>10 Viewer</Text>
+                                                        <Text style={{color:'#707070',fontSize:13}}>10 Views</Text>
                                                     </View>
                                                 </View>
                                             </ImageBackground>
@@ -160,7 +160,7 @@ export default class PopularCategoryScreen extends Component{
                             this.state.data.map((item, index)=>{
                                 return(
                                     <View style={{width:180,paddingRight:5,paddingBottom:10}}>
-                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, key)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
+                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, index)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
                                             <ImageBackground
                                                 style={{height:150}}
                                                 borderTopLeftRadius={8}
@@ -171,7 +171,7 @@ export default class PopularCategoryScreen extends Component{
                                                     <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
                                                     <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
                                                         <Text style={{}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
-                                                        <Text style={{color:'#707070',fontSize:13}}>10 Viewer</Text>
+                                                        <Text style={{color:'#707070',fontSize:13}}>10 Views</Text>
                                                     </View>
                                                 </View>
                                             </ImageBackground>
@@ -192,7 +192,7 @@ export default class PopularCategoryScreen extends Component{
                             this.state.data.map((item, index)=>{
                                 return(
                                     <View style={{width:180,paddingRight:5,paddingBottom:10}}>
-                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, key)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
+                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, index)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
                                             <ImageBackground
                                                 style={{height:150}}
                                                 borderTopLeftRadius={8}
@@ -203,7 +203,7 @@ export default class PopularCategoryScreen extends Component{
                                                     <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
                                                     <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
                                                         <Text style={{}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
-                                                        <Text style={{color:'#707070',fontSize:13}}>10 Viewer</Text>
+                                                        <Text style={{color:'#707070',fontSize:13}}>10 Views</Text>
                                                     </View>
                                                 </View>
                                             </ImageBackground>
@@ -224,7 +224,7 @@ export default class PopularCategoryScreen extends Component{
                             this.state.data.map((item, index)=>{
                                 return(
                                     <View style={{width:180,paddingRight:5,paddingBottom:10}}>
-                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, key)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
+                                        <TouchableOpacity onPress={()=>this.handClickCategory(item, index)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
                                             <ImageBackground
                                                 style={{height:150}}
                                                 borderTopLeftRadius={8}
@@ -235,7 +235,7 @@ export default class PopularCategoryScreen extends Component{
                                                     <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
                                                     <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
                                                         <Text style={{}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
-                                                        <Text style={{color:'#707070',fontSize:13}}>10 Viewer</Text>
+                                                        <Text style={{color:'#707070',fontSize:13}}>10 Views</Text>
                                                     </View>
                                                 </View>
                                             </ImageBackground>
