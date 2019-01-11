@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,ScrollView,TouchableHighlight,TextInput,StyleSheet,TouchableOpacity} from 'react-native';
+import {View,Text,ScrollView,TouchableHighlight,TextInput,StyleSheet,TouchableOpacity,Alert} from 'react-native';
 import { connect } from 'react-redux'
 import HeaderActions from '../Redux/HeaderRedux'
 import {Actions} from 'react-native-router-flux'
@@ -43,6 +43,11 @@ class HeaderScreen extends Component{
         Actions.PopularCategoryScreen();
     }
 
+    handOpenDrawer=()=>{
+        Actions.drawerOpen()
+        this.setState({statusHeader: false , statusIcon: false, title: ''});
+    }
+
     handBacktoPrevious(){
         Actions.pop();
     }
@@ -60,7 +65,7 @@ class HeaderScreen extends Component{
                     <Header style={styles.headerStyle}>
                         <View style={{width: "10%"}}>
                             {this.state.statusIcon?
-                                    <TouchableOpacity onPress={this.mainMenuScreen} style={styles.leftIcon}>
+                                    <TouchableOpacity onPress={this.handOpenDrawer} onEnter={()=>this.hand(false, false, '')} style={styles.leftIcon}>
                                         <SimpleLineIcons name='menu' fontWeight={'bold'} size={16} style={styles.iconColor} />
                                     </TouchableOpacity>
                                 :
@@ -86,10 +91,10 @@ class HeaderScreen extends Component{
 
                         <View style={{width: "45%", flexDirection: 'row', justifyContent: 'flex-end'}}>
                             <TouchableOpacity style={styles.rightIcon}>
-                                <MaterialIcons onPress={this.mainCategoriesScreen} name='restaurant-menu' size={20} style={styles.iconColor} />
+                                <MaterialIcons onPress={this.mainCategoriesScreen} name='restaurant-menu' size={22} style={styles.iconColor} />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.rightIcon}>
-                                <FontAwesome onPress={this.popularCategoryScreen} name='home' size={20} style={styles.iconColor} />
+                                <FontAwesome onPress={this.popularCategoryScreen} name='home' size={22} style={styles.iconColor} />
                             </TouchableOpacity>
                         </View>
                     </Header>
@@ -143,7 +148,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setHeader: () => dispatch(HeaderActions.headerSuccess()),
+        setHeader: (data) => dispatch(HeaderActions.headerSuccess(data)),
     }
 }
 

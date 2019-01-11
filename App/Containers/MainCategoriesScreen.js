@@ -62,7 +62,7 @@ export default class MainCategoriesScreen extends Component{
                     <FlatList
                         data={this.state.data}
                         renderItem={this._renderListCategories}
-                        keyExtractor={(item, index) => index}
+                        keyExtractor={(item, index) => index} 
                     />
                             {/* <ImageBackground
                                 style={{width:'100%',height:120,marginBottom:10}}
