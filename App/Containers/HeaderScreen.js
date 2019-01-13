@@ -45,7 +45,7 @@ class HeaderScreen extends Component{
 
     handOpenDrawer=()=>{
         Actions.drawerOpen()
-        this.setState({statusHeader: false , statusIcon: false, title: ''});
+        // this.setState({statusHeader: false , statusIcon: false, title: ''});
     }
 
     handBacktoPrevious(){
@@ -65,7 +65,7 @@ class HeaderScreen extends Component{
                     <Header style={styles.headerStyle}>
                         <View style={{width: "10%"}}>
                             {this.state.statusIcon?
-                                    <TouchableOpacity onPress={this.handOpenDrawer} onEnter={()=>this.hand(false, false, '')} style={styles.leftIcon}>
+                                    <TouchableOpacity onPress={this.handOpenDrawer} style={styles.leftIcon}>
                                         <SimpleLineIcons name='menu' fontWeight={'bold'} size={16} style={styles.iconColor} />
                                     </TouchableOpacity>
                                 :

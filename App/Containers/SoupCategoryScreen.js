@@ -3,6 +3,7 @@ import { Platform, StyleSheet, View,Image,Text,ImageBackground,ScrollView,FlatLi
 import {Actions} from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/Entypo'
 import Swiper from 'react-native-swiper';
+import HeaderScreen from './HeaderScreen'
 const myIcon = (<Icon name="star" size={18} color="yellow" backgroundColor="yellow" />)
 const fIcon = (<Icon name="star" size={15} color="yellow" backgroundColor="yellow" />)
 const arrowIcon = (<Icon name="chevron-right" size={15} color="red" />)
@@ -25,6 +26,7 @@ export default class SoupCategoryScreen extends Component{
 
     componentDidMount(){
         console.tron.log(this.state.catId)
+        Alert.alert(this.state.catId)
     }
 
     handClickCategory=(item, key)=>{
@@ -58,6 +60,8 @@ export default class SoupCategoryScreen extends Component{
     render() {
       return (
             <View style={{height:'100%',paddingBottom:10,backgroundColor:'#F2EFF8'}}>
+                <HeaderScreen />
+
                 <View style={{width:'100%',height:185}}>
                     <Swiper style={{}} autoplay={true} autoplayTimeout = {3.5}
                         dot={<View style={{backgroundColor: 'rgba(255,255,255,.3)', width: 10, height: 10, borderRadius:5, marginLeft:5, marginRight:5}} />}

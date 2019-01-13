@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
  
-import { Platform, StyleSheet, View,Image,Text,ImageBackground,ScrollView,FlatList,TouchableOpacity,Alert } from 'react-native';
+import { Platform, StyleSheet, View,Image,Text,ImageBackground,ScrollView,FlatList,TouchableOpacity,Alert,BackHandler } from 'react-native';
 import {Actions} from 'react-native-router-flux'
  
 export default class MainCategoriesScreen extends Component{
@@ -16,6 +16,18 @@ export default class MainCategoriesScreen extends Component{
                 {id:6,name:'Other',img:'./Images/other.jpg',img_uri:'http://s-yoolk-images.s3.amazonaws.com/kh/product_catalog/product_images/large/323130?1468418940'}, 
             ],
         }
+    }
+
+    componentDidMount(){
+        BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressed);
+
+    }
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.onBackButtonPressed);
+    }
+
+    onBackButtonPressed() {
+        return true;
     }
 
     handClickCategory=(item, key)=>{

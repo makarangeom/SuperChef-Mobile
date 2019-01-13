@@ -3,6 +3,7 @@ import { Platform, StyleSheet, View,Image,Text,ImageBackground,ScrollView,FlatLi
 import {Actions} from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/Entypo'
 import Swiper from 'react-native-swiper';
+import HeaderScreen from './HeaderScreen'
 const myIcon = (<Icon name="star" size={18} color="yellow" backgroundColor="yellow" />)
 const fIcon = (<Icon name="star" size={15} color="yellow" backgroundColor="yellow" />)
 const arrowIcon = (<Icon name="chevron-right" size={15} color="red" />)
@@ -28,7 +29,7 @@ export default class PopularCategoryScreen extends Component{
     }
 
     handClickCategory=(item, index)=>{
-        Actions.MainDetailFoodInfo(item)
+        Actions.MainDetailFoodInfo({eachItem: item})
     }
 
     _renderSoupItems=({item, index})=>{
@@ -58,10 +59,28 @@ export default class PopularCategoryScreen extends Component{
     SoupCategoryScreen(){
         Actions.SoupCategoryScreen()
     }
+
+    FryCategoryScreen(){
+        Actions.SoupCategoryScreen()
+    }
+    
+    RoastCategoryScreen(){
+        Actions.SoupCategoryScreen()
+    }
+
+    DessertCategoryScreen(){
+        Actions.SoupCategoryScreen()
+    }
+
+    OtherCategoryScreen(){
+        Actions.SoupCategoryScreen()
+    }
     
     render() {
       return (
             <View style={{height:'100%',paddingBottom:10,backgroundColor:'#F2EFF8'}}>
+                <HeaderScreen />
+
                 <View style={{width:'100%',height:100,borderBottomWidth:2,borderColor:'#d6d7da'}}>
                     <Swiper style={{}} autoplay={true} autoplayTimeout = {3.5} showsButtons={true}
                         dot={<View style={{width: 0, height: 0}} />}
@@ -120,7 +139,7 @@ export default class PopularCategoryScreen extends Component{
                 </ScrollView>
 
                 <View style={{flexDirection:'row',justifyContent:'flex-start',padding:10}}>
-                    <Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Fry Categories</Text>{arrowIcon}</Text>
+                    <TouchableOpacity onPress={()=>this.FryCategoryScreen()}><Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Fry Categories</Text>{arrowIcon}</Text></TouchableOpacity>
                 </View>
                 <ScrollView horizontal={true}>
                     <View style={{flexDirection:'row'}}>
@@ -152,7 +171,7 @@ export default class PopularCategoryScreen extends Component{
                 </ScrollView>
 
                 <View style={{flexDirection:'row',justifyContent:'flex-start',padding:10}}>
-                    <Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Roast Categories</Text>{arrowIcon}</Text>
+                    <TouchableOpacity onPress={()=>this.RoastCategoryScreen()}><Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Roast Categories</Text>{arrowIcon}</Text></TouchableOpacity>
                 </View>
                 <ScrollView horizontal={true}>
                     <View style={{flexDirection:'row'}}>
@@ -184,7 +203,7 @@ export default class PopularCategoryScreen extends Component{
                 </ScrollView>
 
                 <View style={{flexDirection:'row',justifyContent:'flex-start',padding:10}}>
-                    <Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Dessert Categories</Text>{arrowIcon}</Text>
+                    <TouchableOpacity onPress={()=>this.DessertCategoryScreen()}><Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Dessert Categories</Text>{arrowIcon}</Text></TouchableOpacity>
                 </View>
                 <ScrollView horizontal={true}>
                     <View style={{flexDirection:'row'}}>
@@ -216,7 +235,7 @@ export default class PopularCategoryScreen extends Component{
                 </ScrollView>
 
                 <View style={{flexDirection:'row',justifyContent:'flex-start',padding:10}}>
-                    <Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Other Categories</Text>{arrowIcon}</Text>
+                    <TouchableOpacity onPress={()=>this.OtherCategoryScreen()}><Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Other Categories</Text>{arrowIcon}</Text></TouchableOpacity>
                 </View>
                 <ScrollView horizontal={true}>
                     <View style={{flexDirection:'row'}}>

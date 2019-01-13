@@ -26,7 +26,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Container>
-          <HeaderScreen />
+          {/* <HeaderScreen /> */}
           <RootContainer />
         </Container>
       </Provider>
