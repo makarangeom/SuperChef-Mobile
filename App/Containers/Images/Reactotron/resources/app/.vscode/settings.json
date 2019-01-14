@@ -1,0 +1,11 @@
+{
+  "standard.enable": false,
+  "editor.formatOnSave": true,
+  "files.exclude": {
+    "dist": true,
+    "yarn-error.log": true,
+    "main.js": true,
+    "main.js.map": true,
+    "node_modules": true,
+  }
+}
