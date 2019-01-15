@@ -68,6 +68,9 @@ export default class MainMenuScreen extends Component {
     else if(item.id == 2){
         Actions.MainCategoriesScreen()
     }
+    else if(item.id == 7){
+        Actions.SettingScreen()
+    }
   }
 
    
