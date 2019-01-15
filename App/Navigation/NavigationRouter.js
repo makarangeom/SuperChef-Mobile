@@ -7,10 +7,9 @@ import SoupCategoryScreen from "../Containers/SoupCategoryScreen";
 import MainDetailFoodInfo from "../Containers/MainDetailFoodInfo";
 import DetailFoodInfo from "../Containers/DetailFoodInfo";
 import TestModule from "../Containers/TestModule";
-import HeaderScreen from "../Containers/HeaderScreen";
 import PopularCategoryScreen from "../Containers/PopularCategoryScreen";
 import MainMenuScreen from "../Containers/MainMenuScreen";
-import NavigationDrawer from "../Containers/NavigationDrawer";
+import SettingScreen from "../Containers/SettingScreen";
 
 class NavigationRouter extends Component{
     constructor(props){
@@ -32,12 +31,13 @@ class NavigationRouter extends Component{
                     {/* <Scene onEnter={()=>this.onEnter(true, true, 'Soups')} key = "SoupCategoryScreen" component = {SoupCategoryScreen} title = "SoupCategoryScreen" hideNavBar={true}  /> */}
                     <Scene onEnter={()=>this.onEnter(true, false, 'Food Information Detail')} key = "MainDetailFoodInfo" component = {MainDetailFoodInfo} title = "MainDetailFoodInfo" hideNavBar={true}  />
                     <Scene onEnter={()=>this.onEnter(false, false, 'DetailFoodInfo')} key = "DetailFoodInfo" component = {DetailFoodInfo} title = "DetailFoodInfo" hideNavBar={true}  />
-                    <Scene onEnter={()=>this.onEnter(true, false, 'I am working at the office')} key = "TestModule" component = {TestModule} title = "TestModule" hideNavBar={true}  />
+                    <Scene initial={true} onEnter={()=>this.onEnter(true, false, 'I am working at the office')} key = "TestModule" component = {TestModule} title = "TestModule" hideNavBar={true}  />
+                    <Scene initial={true} onEnter={()=>this.onEnter(true, false, 'Setting')} key = "SettingScreen" component = {SettingScreen} title = "TestModule" hideNavBar={true}  />
                     {/* <Scene key = "HeaderScreen" component = {HeaderScreen} title = "HeaderScreen" hideNavBar={true}  /> */}
                     <Scene key="SoupCategoryScreen" drawer contentComponent={MainMenuScreen} hideNavBar={true}>
                    		<Scene onEnter={()=>this.onEnter(true, true, 'Soups')} key="SoupCategoryScreen" component = {SoupCategoryScreen} hideNavBar={true} />
 				    </Scene>
-                    <Scene initial={true} key="HeaderScreen" drawer contentComponent={MainMenuScreen} hideNavBar={true}>
+                    <Scene key="HeaderScreen" drawer contentComponent={MainMenuScreen} hideNavBar={true}>
                    		<Scene onEnter={()=>this.onEnter(true, true, 'Popular Food')} key="PopularCategoryScreen" component = {PopularCategoryScreen} hideNavBar={true} />
 				    </Scene>
                 </Scene>

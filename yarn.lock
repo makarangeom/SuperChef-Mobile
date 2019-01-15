@@ -7511,6 +7511,10 @@ react-native-progress@^3.5.0:
   dependencies:
     prop-types "^15.5.8"
 
+react-native-rating-simple@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-rating-simple/-/react-native-rating-simple-1.0.1.tgz#6ab94580805d974290c19ef688016997526d3f79"
+
 react-native-router-flux@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-4.0.6.tgz#e4723f5ce89cb5822e0c9bb6d0a8d4de6179eb58"

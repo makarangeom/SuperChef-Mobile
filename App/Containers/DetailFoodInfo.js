@@ -2,16 +2,18 @@
 import React, { Component } from 'react'
 import { View,StyleSheet,Dimensions,Text,Alert,ScrollView,ImageBackground,TouchableOpacity,Animated,Image,TextInput } from 'react-native';
 import { TabView, TabBar, SceneMap,TabViewAnimated } from 'react-native-tab-view';
-import Icon from 'react-native-vector-icons/Entypo'
-import Icons from 'react-native-vector-icons/MaterialIcons'
-const fIcon = (<Icon name="star" size={20} color="#cccc00"/>)
-const star = (<Icon name="star" size={30} color="#707070"/>)
+import { Header, Icon } from 'native-base';
 import * as Progress from 'react-native-progress';
+import Rating from 'react-native-rating-simple';
 
+const fullStar = require('./Images/fullStar.png');
+const emptyStar = require('./Images/emptyStar.png');
 export default class DetailFoodInfo extends Component {
   state = {
-    index: 0,
+      index: 0,
     numComments: 0,
+    rating5: 2,
+    ratingNow: 0,
     routes: [
       { key: 'info', title: 'Info' },
       { key: 'comment', title: 'Rate' },
@@ -47,39 +49,45 @@ export default class DetailFoodInfo extends Component {
     commentFood:[
         {
             name: 'Koko Real',
-            like: '15',
-            dislike: '0',
-            comment: '11'
+            like: 15,
+            dislike: 0,
+            comment: 11,
+            star: 3
         },
         {
             name: 'Top King',
-            like: '5',
-            dislike: '0',
-            comment: '1'
+            like: 4,
+            dislike: 0,
+            comment: 1,
+            star: 1
         },
         {
             name: 'Koko Real',
-            like: '2',
-            dislike: '0',
-            comment: '0'
+            like: 23,
+            dislike: 0,
+            comment: 0,
+            star: 4
         },
         {
             name: 'Top Sound',
-            like: '8',
-            dislike: '0',
-            comment: '2'
+            like: 7,
+            dislike: 0,
+            comment: 3,
+            star: 2
         },
         {
             name: 'Nanoo Black',
-            like: '12',
-            dislike: '0',
-            comment: '22'
+            like: 2,
+            dislike: 0,
+            comment: 3,
+            star: 3
         },
         {
             name: 'Mr Ploak',
-            like: '30',
-            dislike: '3',
-            comment: '35'
+            like: 75,
+            dislike: 5,
+            comment: 46,
+            star: 4
         }
     ],
     DetailFoodInfo: [
@@ -126,7 +134,7 @@ export default class DetailFoodInfo extends Component {
                                     item.ingredients.map((data, index)=>{
                                         return(
                                             <View style={{flexDirection: 'row',alignItems:'center',paddingRight:30}}> 
-                                                <Icon name="dot-single" size={25} /><Text style={{justifyContent:'center',alignItems:'center'}}>{data.title}</Text>
+                                                <Icon type='Entypo' name="dot-single" style={{fontSize:25,color:'#707070'}} /><Text style={{justifyContent:'center',alignItems:'center'}}>{data.title}</Text>
                                             </View>   
                                         )
                                     })
@@ -184,7 +192,7 @@ export default class DetailFoodInfo extends Component {
                                 onChangeText = {this.handlePassword}/>
                         </View>
                         
-                        <TouchableOpacity style={{justifyContent:'center'}}><Icons name="send" size={25} ImageBackground={'#707070'}/></TouchableOpacity>
+                        <TouchableOpacity style={{justifyContent:'center'}}><Icon type='MaterialIcons' name="send" style={{fontSize:25,color:'#707070'}} /></TouchableOpacity>
                     </View>
                     {
                         this.state.commentFood.map((item, key)=>{
@@ -201,14 +209,14 @@ export default class DetailFoodInfo extends Component {
                                             <Text style={{fontSize:15,color:'#707070'}}>{item.name}</Text>
                                             <Text style={{fontSize:13,color:'#E4BE73',fontWeight:'bold'}}>Comment here...</Text>
                                             <View style={{flexDirection:'row'}}>
-                                                <TouchableOpacity style={{justifyContent:'center',paddingRight:5}}><Icons name="thumb-up" size={15} ImageBackground={'#707070'}/></TouchableOpacity><Text style={{fontSize:13,color:'black'}}>{item.like}</Text>
-                                                <TouchableOpacity style={{justifyContent:'center',paddingRight:5,marginLeft:20}}><Icons name="thumb-down" size={15} ImageBackground={'#707070'}/></TouchableOpacity><Text style={{fontSize:13,color:'black'}}>{item.dislike}</Text>
-                                                <TouchableOpacity style={{justifyContent:'center',paddingRight:5,marginLeft:20}}><Icons name="comment" size={15} ImageBackground={'#707070'}/></TouchableOpacity><Text style={{fontSize:13,color:'black'}}>{item.comment}</Text>
+                                                <TouchableOpacity style={{justifyContent:'center',paddingRight:5}}><Icon type='MaterialIcons' name="thumb-up" style={{fontSize:15,color:'#707070'}} /></TouchableOpacity><Text style={{fontSize:13,color:'#707070'}}>{item.like}</Text>
+                                                <TouchableOpacity style={{justifyContent:'center',paddingRight:5,marginLeft:20}}><Icon type='MaterialIcons' name="thumb-down" style={{fontSize:15,color:'#707070'}} /></TouchableOpacity><Text style={{fontSize:13,color:'#707070'}}>{item.dislike}</Text>
+                                                <TouchableOpacity style={{justifyContent:'center',paddingRight:5,marginLeft:20}}><Icon type='MaterialIcons' name="comment" style={{fontSize:15,color:'#707070'}} /></TouchableOpacity><Text style={{fontSize:13,color:'#707070'}}>{item.comment}</Text>
                                             </View>
                                         </View>
                                     </View>
                                     
-                                    <TouchableOpacity style={{justifyContent:'center'}}><Icon name="dots-three-vertical" size={15} ImageBackground={'#707070'}/></TouchableOpacity>
+                                    <TouchableOpacity style={{justifyContent:'center'}}><Icon type='Entypo' name="dots-three-vertical" style={{fontSize:15,color:'#707070'}} /></TouchableOpacity>
                                 </View>   
                             )
                         })
@@ -226,7 +234,13 @@ export default class DetailFoodInfo extends Component {
                         <Text style={{fontSize:15,color:'#EB011C',fontWeight:'bold'}}>Overall Rating</Text>
                         <View style={{flexDirection:'row'}}>
                             <View style={{fontSize:13,color:'#FFFFFF',paddingRight:8,paddingLeft:8,borderWidth:1,borderColor:'#EB011C',backgroundColor:'#EB011C',borderRadius:15,marginRight:10}}><Text style={{color:'#ffffff'}}>5.0</Text></View>
-                            <Text style={{color:'#E4BE73'}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
+                            <Rating
+                                rating={this.state.rating5}
+                                viewOnly={true}
+                                fullStar={<Image source={fullStar} style={{ width:20,height:20,marginRight:3 }} />}
+                                emptyStar={<Image source={emptyStar} style={{ width:20,height:20,marginRight:3 }} />}
+                                starSize={40}
+                            />
                         </View>
                         <Text style={{fontSize:15,color:'#EB011C',fontWeight:'bold'}}>({this.state.numComments})</Text>
                     </View>
@@ -242,7 +256,16 @@ export default class DetailFoodInfo extends Component {
                         })
                     }
 
-                    <View><Text style={{textAlign:'center',marginTop:5}}>{star}{star}{star}{star}{star}</Text></View>
+                    <View style={{marginTop:5,alignItems:'center'}}>
+                        <Rating
+                            emptyStar={<Image source={emptyStar} style={{ width:30,height:30,marginRight:3 }} />}
+                            fullStar={<Image source={fullStar} style={{ width:30,height:30,marginRight:3 }} />}
+                            maxRating={5}
+                            starSize={30}
+                            rating={this.state.ratingNow}
+                            onChange={rating => {this.setState({ ratingNow: rating });}}
+                        />
+                    </View>
                     
                     <TouchableOpacity style={{flex:1,paddingBottom:13,paddingTop:13,borderWidth:1,borderColor:'#EB011C',backgroundColor:'#EB011C',borderRadius:25,marginBottom:5,marginTop:5}}>
                         <Text style={{fontSize:13,color:'#FFFFFF',textAlign:'center'}}>Rating Now</Text>
@@ -266,7 +289,13 @@ export default class DetailFoodInfo extends Component {
                                     
                                     <View style={{flexDirection:'row',alignItems:'center'}}>
                                         <View style={{fontSize:13,color:'#FFFFFF',paddingRight:8,paddingLeft:8,borderWidth:1,borderColor:'#EB011C',backgroundColor:'#EB011C',borderRadius:15,marginRight:10}}><Text style={{color:'#ffffff'}}>5.0</Text></View>
-                                        <Text style={{color:'#E4BE73'}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
+                                        <Rating
+                                            rating={item.star}
+                                            viewOnly={true}
+                                            fullStar={<Image source={fullStar} style={{ width:20,height:20,marginRight:3 }} />}
+                                            emptyStar={<Image source={emptyStar} style={{ width:20,height:20,marginRight:3 }} />}
+                                            starSize={40}
+                                        />
                                     </View>
                                 </View>   
                             )

@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, View,Image,Text,ImageBackground,ScrollView,FlatList,TouchableOpacity,Alert,Dimensions } from 'react-native';
 import {Actions} from 'react-native-router-flux';
-import Icon from 'react-native-vector-icons/Entypo'
+import {Icon} from 'native-base'
 import Swiper from 'react-native-swiper';
 import HeaderScreen from './HeaderScreen'
-const myIcon = (<Icon name="star" size={18} color="yellow" backgroundColor="yellow" />)
-const fIcon = (<Icon name="star" size={15} color="yellow" backgroundColor="yellow" />)
-const arrowIcon = (<Icon name="chevron-right" size={15} color="red" />)
+import Rating from 'react-native-rating-simple';
 
-const WIDTH = Dimensions.get('window').width 
+const fullStar = require('./Images/fullStar.png');
+const emptyStar = require('./Images/emptyStar.png')
 export default class SoupCategoryScreen extends Component{
     constructor(props){
         super(props);
         this.state={
+            rating5: 3,
             data:[
                 {id:1,name:'Soup Black Chicken',img:'./Images/soup.jpg',img_uri:'http://1.bp.blogspot.com/-QT7_eXH7Ek4/TmcKKNVv-HI/AAAAAAAAGCc/67ipwWUL2z4/s400/300745_10150277303621526_536581525_8438262_1203344248_n.jpg'},
                 {id:2,name:'Fry',img:'./Images/fry.jpg',img_uri:'http://taidynasty.com/wp-content/uploads/2016/08/General-Tsos-Chicken.jpg?w=640'},
@@ -26,11 +26,10 @@ export default class SoupCategoryScreen extends Component{
 
     componentDidMount(){
         console.tron.log(this.state.catId)
-        Alert.alert(this.state.catId)
     }
 
     handClickCategory=(item, key)=>{
-        Actions.MainDetailFoodInfo(item)
+        Actions.MainDetailFoodInfo({eachItem: item})
     }
 
     _renderSoupItems=({item, key})=>{
@@ -46,14 +45,19 @@ export default class SoupCategoryScreen extends Component{
                         <View style={{width:'100%',marginTop:110,height:70,backgroundColor:'rgba(0,0,0,.6)',padding:5}}>
                             <Text style={{flex:2.5,color:'#ffffff',fontWeight:'bold'}}>{item.name}</Text>
                             <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
-                                <Text style={{color:'#ffffff'}}>{fIcon}{fIcon}{fIcon}{fIcon}{fIcon}</Text>
+                                <Rating
+                                    rating={this.state.rating5}
+                                    viewOnly={true}
+                                    fullStar={<Image source={fullStar} style={{ width:15,height:15,marginRight:3,paddingRight:5 }} />}
+                                    emptyStar={<Image source={emptyStar} style={{ width:15,height:15,marginRight:3 }} />}
+                                    starSize={40}
+                                />
                                 <Text style={{color:'#ffffff',fontSize:13}}>10 Views</Text>
                             </View>
                         </View>
                     </ImageBackground>
                 </TouchableOpacity>
             </View>
-            
         )
     }
     
@@ -61,7 +65,6 @@ export default class SoupCategoryScreen extends Component{
       return (
             <View style={{height:'100%',paddingBottom:10,backgroundColor:'#F2EFF8'}}>
                 <HeaderScreen />
-
                 <View style={{width:'100%',height:185}}>
                     <Swiper style={{}} autoplay={true} autoplayTimeout = {3.5}
                         dot={<View style={{backgroundColor: 'rgba(255,255,255,.3)', width: 10, height: 10, borderRadius:5, marginLeft:5, marginRight:5}} />}
@@ -82,7 +85,13 @@ export default class SoupCategoryScreen extends Component{
                                                         <Text style={{color:'#ffffff'}}>Soup Black Chicken</Text>
                                                     </View>
                                                     <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
-                                                        <Text style={{color:'#ffffff'}}>{myIcon}{myIcon}{myIcon}{myIcon}{myIcon}</Text>
+                                                        <Rating
+                                                            rating={this.state.rating5}
+                                                            viewOnly={true}
+                                                            fullStar={<Image source={fullStar} style={{ width:15,height:15,marginRight:3,paddingRight:5 }} />}
+                                                            emptyStar={<Image source={emptyStar} style={{ width:15,height:15,marginRight:3 }} />}
+                                                            starSize={40}
+                                                        />
                                                         <Text style={{color:'#ffffff'}}>10 Views</Text>
                                                     </View>
                                                 </View>
@@ -97,7 +106,7 @@ export default class SoupCategoryScreen extends Component{
 
                 <View style={{flexDirection:'row',justifyContent:'space-between',padding:10}}>
                     <Text style={{fontWeight:'bold',color:'red',textDecorationLine:'underline'}}>Categories</Text>
-                    <Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',textDecorationLine:'underline'}}>Soups</Text>{arrowIcon}</Text>
+                    <Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',textDecorationLine:'underline'}}>Soups <Icon type='Entypo' name="chevron-right" style={{fontSize:15,color:'#F90303'}} /></Text></Text>
                 </View>
 
                 <ScrollView horizontal={false} style={{paddingLeft:5,paddingRight:5}}>

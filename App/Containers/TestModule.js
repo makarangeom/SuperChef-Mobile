@@ -2,37 +2,40 @@
 import React, { Component } from 'react'
 import { View,StyleSheet,Dimensions,Text,Alert,ScrollView,ImageBackground,TouchableOpacity,Animated,Image,TextInput } from 'react-native';
 import { TabView, TabBar, SceneMap,TabViewAnimated } from 'react-native-tab-view';
-import Icon from 'react-native-vector-icons/Entypo'
-import Icons from 'react-native-vector-icons/MaterialIcons'
-const fIcon = (<Icon name="star" size={20} color="#cccc00"/>)
-const star = (<Icon name="star" size={30} color="#707070"/>)
-import * as Progress from 'react-native-progress';
+import {Icon} from 'native-base'
+import Rating from 'react-native-rating-simple';
+var fullStar = require('./Images/fullStar.png');
+var emptyStar = require('./Images/emptyStar.png');
 
-const Window = Dimensions.get('window');
 export default class TestModule extends Component {
-  state = {
-    index: 0,
-    numComments: 0,
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      rating5: 2
+    };
+  }
    
   render() {
     return (
-        <View>
-            <View style={{width:Window.width,height:Window.height,backgroundColor:'rgba(0,0,0,.4)',alignItems:'center',justifyContent:'center'}}>
-                    <Image
-                    style={{height:110,width:110}}
-                    borderRadius={100}
-                    source={require('./Images/wallpaper.png')}
-                />
-                <Text style={{flex:2.5,color:'#ffffff',fontWeight:'bold'}}>sfdsdf</Text>
-            </View>
-        </View>
-    );
-  }
+      <View style={{}}>
+      
+      <Text style={{}}>
+        On release/click, no half, max 7: {this.state.rating2}
+      </Text>
+      <Rating
+        emptyStar={
+          <Image source={emptyStar} style={{ width: 30, height: 30 }} />
+        }
+        fullStar={
+          <Image source={fullStar} style={{ width: 30, height: 30 }} />
+        }
+        maxRating={5}
+        starSize={30}
+        onChange={rating => {
+          this.setState({ rating2: rating });
+        }}
+      />
+    </View>
+  );
 }
-const styles = StyleSheet.create({
-    scene: {
-      flex: 1,
-    },
-  });
+}

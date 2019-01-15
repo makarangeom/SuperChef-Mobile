@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
- 
 import { Platform, StyleSheet, View,Image,Text,ImageBackground,ScrollView,FlatList,TouchableOpacity,Alert,BackHandler } from 'react-native';
 import {Actions} from 'react-native-router-flux'
  
@@ -20,7 +19,6 @@ export default class MainCategoriesScreen extends Component{
 
     componentDidMount(){
         BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressed);
-
     }
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.onBackButtonPressed);
@@ -67,8 +65,7 @@ export default class MainCategoriesScreen extends Component{
     }
     
     render() {
-      return (
-    
+        return (
             <View style={{flex:1,paddingTop:10,paddingLeft:10,paddingRight:10}}>
                 <ScrollView>
                     <FlatList
@@ -76,63 +73,8 @@ export default class MainCategoriesScreen extends Component{
                         renderItem={this._renderListCategories}
                         keyExtractor={(item, index) => index} 
                     />
-                            {/* <ImageBackground
-                                style={{width:'100%',height:120,marginBottom:10}}
-                                source={require('./Images/soup.jpg')}
-                                // source={{uri:'http://1.bp.blogspot.com/-QT7_eXH7Ek4/TmcKKNVv-HI/AAAAAAAAGCc/67ipwWUL2z4/s400/300745_10150277303621526_536581525_8438262_1203344248_n.jpg'}}
-                            >
-                                <View style={{width: '100%', height: 120,backgroundColor:'rgba(0,0,0,.6)',justifyContent: 'center'}}>
-                                    <Text style={{textAlign:'center',color:'#ffffff',fontWeight:'bold'}}>Soups</Text>
-                                </View>
-                            </ImageBackground>
-                            <ImageBackground
-                                style={{width:'100%',height:120,marginBottom:10}}
-                                source={require('./Images/fry.jpg')} 
-                                // source = {{uri:'http://taidynasty.com/wp-content/uploads/2016/08/General-Tsos-Chicken.jpg?w=640'}}
-                            >
-                                <View style={{width: '100%', height: 120,backgroundColor:'rgba(0,0,0,.6)',justifyContent: 'center'}}>
-                                    <Text style={{textAlign:'center',color:'#ffffff',fontWeight:'bold'}}>Fry</Text>
-                                </View>
-                            </ImageBackground>
-                            <ImageBackground
-                                style={{width:'100%',height:120,marginBottom:10}}
-                                source={require('./Images/roast.jpg')} 
-                                // source = {{uri:'http://eatdrinkpaleo.com.au/wp-content/uploads/2016/04/paleo-duck-pancakes_900-1.jpg'}}
-                            >
-                                <View style={{width: '100%', height: 120,backgroundColor:'rgba(0,0,0,.6)',justifyContent: 'center'}}>
-                                    <Text style={{textAlign:'center',color:'#ffffff',fontWeight:'bold'}}>Roast</Text>
-                                </View>
-                            </ImageBackground>
-                            <ImageBackground
-                                style={{width:'100%',height:120,marginBottom:10}}
-                                source={require('./Images/dessert.jpg')}  
-                                // source = {{uri:'https://www.malis-restaurant.com/phnompenh/wp-content/uploads/2015/12/khmer-dessert-960x365.jpg'}}
-                            >
-                                <View style={{width: '100%', height: 120,backgroundColor:'rgba(0,0,0,.6)',justifyContent: 'center'}}>
-                                    <Text style={{textAlign:'center',color:'#ffffff',fontWeight:'bold'}}>Dessert</Text>
-                                </View>
-                            </ImageBackground>
-                            <ImageBackground
-                                style={{width:'100%',height:120,marginBottom:10}}
-                                source = {{uri:'https://lh4.googleusercontent.com/proxy/IOepd_REYkMHpKWDeZS7LKCc6Ol6fZVzwf4BOa1x_HPpwT5A9AgDEsJXdycI6hPxiE8_u4AArk9opO3FHPufZ8Cf_MaA6VmKfPMjVlVIV5_9F1U=s0-d'}}
-                            >
-                                <View style={{width: '100%', height: 120,backgroundColor:'rgba(0,0,0,.6)',justifyContent: 'center'}}>
-                                    <Text style={{textAlign:'center',color:'#ffffff',fontWeight:'bold'}}>Popular</Text>
-                                </View>
-                            </ImageBackground>
-                            <ImageBackground
-                                style={{width:'100%',height:120,marginBottom:10}}
-                                source={require('./Images/other.jpg')}
-                                // source = {{uri:'http://s-yoolk-images.s3.amazonaws.com/kh/product_catalog/product_images/large/323130?1468418940'}}
-                            >
-                                <View style={{width: '100%', height: 120,backgroundColor:'rgba(0,0,0,.6)',justifyContent: 'center'}}>
-                                    <Text style={{textAlign:'center',color:'#ffffff',fontWeight:'bold'}}>Other</Text>
-                                </View>
-                            </ImageBackground> */}
-                        
                 </ScrollView>
             </View>
-
-      );
+        );
     }
-   }
+}

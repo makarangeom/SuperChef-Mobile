@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, View,Image,Text,ImageBackground,ScrollView,FlatList,TouchableOpacity,Alert,Dimensions } from 'react-native';
 import {Actions} from 'react-native-router-flux';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import {Icon} from 'native-base'
 import DetailFood from './DetailFoodInfo';
 import HeaderScreen from './HeaderScreen'
-const myIcon = (<Icon name="play-circle" size={50} color="yellow" backgroundColor="yellow" />)
 
-const WIDTH = Dimensions.get('window').width 
 export default class MainDetailFoodInfo extends Component{
     constructor(props){
         super(props);
@@ -25,7 +23,6 @@ export default class MainDetailFoodInfo extends Component{
 
     componentDidMount(){
         console.tron.log(this.state.eachItem)
-        Alert.alert('this.state.eachItem: ' + this.state.eachItem.img_uri)
     }
 
     handClickCategory=(item, key)=>{
@@ -33,7 +30,7 @@ export default class MainDetailFoodInfo extends Component{
     }
 
     render() {
-      return (
+        return (
             <View style={{height:'100%',backgroundColor:'#F2EFF8'}}>
                 <HeaderScreen/>
                 <View style={{width:'100%',height:185,marginBottom:-5}}>
@@ -44,7 +41,7 @@ export default class MainDetailFoodInfo extends Component{
                                 source={{uri:this.state.eachItem.img_uri}}
                             >
                                 <View style={{width:'100%',height:180,backgroundColor:'rgba(0,0,0,.6)',justifyContent:'center',alignItems:'center'}}>
-                                    <Text style={{color:'#ffffff'}}>{myIcon}</Text>
+                                    <Icon type='FontAwesome' name="play-circle" style={{fontSize:50,color:'#FFAF00'}} />
                                 </View>
                             </ImageBackground>
                         </TouchableOpacity>
@@ -52,7 +49,6 @@ export default class MainDetailFoodInfo extends Component{
                 </View>
                 <DetailFood/>
             </View>
-
-      );
+        );
     }
 }

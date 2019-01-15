@@ -5,9 +5,6 @@ import HeaderActions from '../Redux/HeaderRedux'
 import {Actions} from 'react-native-router-flux'
 import { Header, Icon } from 'native-base';
 import _ from 'lodash'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 class HeaderScreen extends Component{
     constructor(props){
@@ -66,11 +63,11 @@ class HeaderScreen extends Component{
                         <View style={{width: "10%"}}>
                             {this.state.statusIcon?
                                     <TouchableOpacity onPress={this.handOpenDrawer} style={styles.leftIcon}>
-                                        <SimpleLineIcons name='menu' fontWeight={'bold'} size={16} style={styles.iconColor} />
+                                        <Icon type='SimpleLineIcons' name='menu' style={{fontSize:20,color:'#fff'}} />
                                     </TouchableOpacity>
                                 :
                                     <TouchableOpacity onPress={this.handBacktoPrevious} style={styles.leftIcon}>
-                                        <FontAwesome name='angle-left' size={25} fontWeight={'bold'} style={styles.iconColor} />
+                                        <Icon type='FontAwesome' name='angle-left' style={{fontSize:25,color:'#fff'}} />
                                     </TouchableOpacity>
                             }
                         </View>
@@ -91,10 +88,10 @@ class HeaderScreen extends Component{
 
                         <View style={{width: "45%", flexDirection: 'row', justifyContent: 'flex-end'}}>
                             <TouchableOpacity style={styles.rightIcon}>
-                                <MaterialIcons onPress={this.mainCategoriesScreen} name='restaurant-menu' size={22} style={styles.iconColor} />
+                                <Icon type='MaterialIcons' onPress={this.mainCategoriesScreen} name='restaurant-menu' style={{fontSize:25,color:'#fff'}} />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.rightIcon}>
-                                <FontAwesome onPress={this.popularCategoryScreen} name='home' size={22} style={styles.iconColor} />
+                                <Icon type='FontAwesome' onPress={this.popularCategoryScreen} name='home' style={{fontSize:25,color:'#fff'}} />
                             </TouchableOpacity>
                         </View>
                     </Header>
@@ -110,7 +107,8 @@ const styles = StyleSheet.create({
     iconColor:
     {
         color: '#FFFFFF',
-        fontWeight:'bold'
+        fontWeight:'bold',
+        fontSize:22
     },
     title:
     {
