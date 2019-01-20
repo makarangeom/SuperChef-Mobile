@@ -71,6 +71,9 @@ export default class MainMenuScreen extends Component {
     else if(item.id == 7){
         Actions.SettingScreen()
     }
+    else if(item.id == 8){
+        Actions.LoginScreen()
+    }
   }
 
    
@@ -82,7 +85,7 @@ export default class MainMenuScreen extends Component {
                 resizeMode= 'cover'
                 borderTopLeftRadius={8}
                 borderTopRightRadius={8}
-                source={require('./Images/wallpaper.png')}
+                source={require('./Images/sideMenu.png')}
             >
                 <View style={{height:Window.height,backgroundColor:'rgba(0,0,0,.7)'}}>
                     <View style={{flex:3,flexDirection:'row',alignItems:'center',borderBottomWidth:1,borderBottomColor:'#fff',padding:10}}>
