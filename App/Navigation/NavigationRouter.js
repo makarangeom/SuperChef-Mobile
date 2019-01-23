@@ -11,6 +11,7 @@ import PopularCategoryScreen from "../Containers/PopularCategoryScreen";
 import MainMenuScreen from "../Containers/MainMenuScreen";
 import SettingScreen from "../Containers/SettingScreen";
 import LoginScreen from "../Containers/LoginScreen";
+import WelcomeScreen from "../Containers/WelcomeScreen";
 
 class NavigationRouter extends Component{
     constructor(props){
@@ -37,7 +38,8 @@ class NavigationRouter extends Component{
                     <Scene onEnter={()=>this.onEnter(false, false, 'DetailFoodInfo')} key = "DetailFoodInfo" component = {DetailFoodInfo} title = "DetailFoodInfo" hideNavBar={true}  />
                     <Scene onEnter={()=>this.onEnter(true, false, 'I am working at the office')} key = "TestModule" component = {TestModule} title = "TestModule" hideNavBar={true}  />
                     <Scene onEnter={()=>this.onEnter(true, false, 'Setting')} key = "SettingScreen" component = {SettingScreen} title = "TestModule" hideNavBar={true}  />
-                    <Scene initial={true} onEnter={()=>this.onEnter(false, false, '')} key = "LoginScreen" component = {LoginScreen} title = "LoginScreen" hideNavBar={true}  />
+                    <Scene onEnter={()=>this.onEnter(false, false, '')} key = "LoginScreen" component = {LoginScreen} title = "LoginScreen" hideNavBar={true}  />
+                    <Scene initial={true} onEnter={()=>this.onEnter(false, false, '')} key = "WelcomeScreen" component = {WelcomeScreen} title = "WelcomeScreen" hideNavBar={true}  />
                     {/* <Scene key = "HeaderScreen" component = {HeaderScreen} title = "HeaderScreen" hideNavBar={true}  /> */}
                     <Scene key="SoupCategoryScreen" drawer contentComponent={MainMenuScreen} hideNavBar={true}>
                    		<Scene onEnter={()=>this.onEnter(true, true, 'Soups')} key="SoupCategoryScreen" component = {SoupCategoryScreen} hideNavBar={true} />

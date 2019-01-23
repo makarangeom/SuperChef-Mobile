@@ -20,12 +20,23 @@ export default class PopularCategoryScreen extends Component{
                 {id:4,name:'Dessert',img:'./Images/dessert.jpg',img_uri:'http://s-yoolk-images.s3.amazonaws.com/kh/product_catalog/product_images/large/323130?1468418940'},
                 {id:5,name:'Other',img:'./Images/other.jpg',img_uri:'http://s-yoolk-images.s3.amazonaws.com/kh/product_catalog/product_images/large/323130?1468418940'}, 
             ],
+            slider:[
+                {title:'WELCOME',description:"It's make you easy find the foods that you want to cook quickly."},
+                {title:'POPULAR FOOD',description:"It's make you easy find the foods that you want to cook quickly."},
+                {title:'SOUPS',description:"It's make you easy find the foods that you want to cook quickly."},
+                {title:'FRY & FRIES',description:"It's make you easy find the foods that you want to cook quickly."},
+                {title:'ROAST & GRILL',description:"It's make you easy find the foods that you want to cook quickly."},
+                {title:'DESSERT & SWEET',description:"It's make you easy find the foods that you want to cook quickly."},
+                {title:'OTHER',description:"It's make you easy find the foods that you want to cook quickly."},
+            ],
             catId: props.catId
         }
     }
 
     componentDidMount(){
-        console.tron.log(this.state.catId)
+        this.interval = setInterval(()=>{
+            this.setState({timer: this.state.timer + 1});
+        },1000)
     }
 
     handClickCategory=(item, index)=>{
@@ -88,20 +99,20 @@ export default class PopularCategoryScreen extends Component{
                 <HeaderScreen />
 
                 <View style={{width:'100%',height:100,borderBottomWidth:2,borderColor:'#d6d7da'}}>
-                    <Swiper style={{}} autoplay={true} autoplayTimeout = {3.5} showsButtons={true}
+                    <Swiper style={{}} autoplay={true} autoplayTimeout = {5} showsButtons={true}
                         dot={<View style={{width: 0, height: 0}} />}
                         activeDot={<View style={{width: 0, height: 0}} />}
                         prevButton={<Text style={{color:'#707070',fontSize:40}}>‹</Text>}
                         nextButton={<Text style={{color:'#707070',fontSize:40}}>›</Text>}
                     >
                         {
-                            this.state.data.map((item, index)=>{
+                            this.state.slider.map((item, index)=>{
                                 return(
                                     <View style={{}}>
                                         <View style={{height:100,backgroundColor:'#ffffff',padding:10}}>
-                                            <View style={{flex:2.8}}>
-                                                <Text style={{color:'#707070',fontWeight:'bold'}}>Soups</Text>
-                                                <Text style={{color:'#707070'}}>Soup Black Chicken</Text>
+                                            <View style={{flex:2.8,paddingLeft:20,paddingRight:20,justifyContent:'center'}}>
+                                                <Text style={{color:'#F90303',textAlign:'center',fontWeight:'bold'}}>{item.title}</Text>
+                                                <Text style={{color:'#707070',textAlign:'center'}}>{item.description}</Text>
                                             </View>
                                         </View>
                                     </View> 

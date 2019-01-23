@@ -77,54 +77,54 @@ export default class MainMenuScreen extends Component {
   }
 
    
-  render() {
-    return (
-        <View style={{}}>
-            <ImageBackground
-                style={{height:Window.height}}
-                resizeMode= 'cover'
-                borderTopLeftRadius={8}
-                borderTopRightRadius={8}
-                source={require('./Images/sideMenu.png')}
-            >
-                <View style={{height:Window.height,backgroundColor:'rgba(0,0,0,.7)'}}>
-                    <View style={{flex:3,flexDirection:'row',alignItems:'center',borderBottomWidth:1,borderBottomColor:'#fff',padding:10}}>
-                        <Image
-                            style={{width:70,height:70,borderRadius:100,borderWidth:3,borderColor:'#fff',marginRight:10}}
-                            source={{uri: 'http://greenwings.co/wp-content/uploads/2018/09/blank-head-profile-pic-for-a-man.jpg'}}
-                        />
+    render() {
+        return (
+            <View style={{}}>
+                <ImageBackground
+                    style={{height:Window.height}}
+                    resizeMode= 'cover'
+                    borderTopLeftRadius={8}
+                    borderTopRightRadius={8}
+                    source={require('./Images/sideMenu.png')}
+                >
+                    <View style={{height:Window.height,backgroundColor:'rgba(0,0,0,.7)'}}>
+                        <View style={{flex:3,flexDirection:'row',alignItems:'center',borderBottomWidth:1,borderBottomColor:'#fff',padding:10}}>
+                            <Image
+                                style={{width:70,height:70,borderRadius:100,borderWidth:3,borderColor:'#fff',marginRight:10}}
+                                source={{uri: 'http://greenwings.co/wp-content/uploads/2018/09/blank-head-profile-pic-for-a-man.jpg'}}
+                            />
 
-                        <View style={{flexDirection:'column'}}>
-                            <Text style={{fontSize:18,color:'#fff'}}>User Name:</Text>
-                            <Text style={{fontSize:15,color:'#fff'}}>Email:</Text>
+                            <View style={{flexDirection:'column'}}>
+                                <Text style={{fontSize:18,color:'#fff'}}>User Name:</Text>
+                                <Text style={{fontSize:15,color:'#fff'}}>Email:</Text>
+                            </View>
+                        </View>
+
+                        <View style={{flex:10,padding:10}}>
+                            <Text style={{fontSize:18,color:'#fff',textAlign:'center',paddingTop:5,paddingBottom:15}}>WELCOME</Text>
+                            {
+                                this.state.eachMenuItem.map((item, index)=>{
+                                    return(
+                                        <TouchableOpacity onPress={()=>this.handClickEachMenu(item)} style={{flexDirection:'row',paddingBottom:15}}>
+                                            <Icon type={item.type} name={item.name_icon} style={{color:'#fff',fontSize:23,paddingRight:15,fontWeight:'bold'}} />
+                                            <Text style={{fontSize:16,color:'#fff'}}>{item.name}</Text>
+                                        </TouchableOpacity>
+                                    )
+                                })
+                            }
+                            
+                        </View>
+                        
+
+                        <View style={{flex:1,flexDirection:'row',justifyContent:'space-between',borderTopWidth:1,borderTopColor:'#fff',padding:10}}>
+                            <Text style={{color:'#ffffff',fontWeight:'bold'}}>Nanoo Black</Text>
+                            <Text style={{color:'#ffffff',fontWeight:'bold'}}>Version 0.0.1</Text>
                         </View>
                     </View>
-
-                    <View style={{flex:10,padding:10}}>
-                        <Text style={{fontSize:18,color:'#fff',textAlign:'center',paddingTop:5,paddingBottom:15}}>WELCOME</Text>
-                        {
-                            this.state.eachMenuItem.map((item, index)=>{
-                                return(
-                                    <TouchableOpacity onPress={()=>this.handClickEachMenu(item)} style={{flexDirection:'row',paddingBottom:15}}>
-                                        <Icon type={item.type} name={item.name_icon} style={{color:'#fff',fontSize:23,paddingRight:15,fontWeight:'bold'}} />
-                                        <Text style={{fontSize:16,color:'#fff'}}>{item.name}</Text>
-                                    </TouchableOpacity>
-                                )
-                            })
-                        }
-                        
-                    </View>
-                    
-
-                    <View style={{flex:1,flexDirection:'row',justifyContent:'space-between',borderTopWidth:1,borderTopColor:'#fff',padding:10}}>
-                        <Text style={{color:'#ffffff',fontWeight:'bold'}}>Nanoo Black</Text>
-                        <Text style={{color:'#ffffff',fontWeight:'bold'}}>Version 0.0.1</Text>
-                    </View>
-                </View>
-            </ImageBackground>
-        </View>
-    );
-  }
+                </ImageBackground>
+            </View>
+        );
+    }
 }
 const styles = StyleSheet.create({
     scene: {
