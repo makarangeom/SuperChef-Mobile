@@ -95,9 +95,8 @@ export default class PopularCategoryScreen extends Component{
     
     render() {
       return (
-            <View style={{height:'100%',paddingBottom:10,backgroundColor:'#F2EFF8'}}>
+            <View style={{height:'100%',paddingBottom:10,backgroundColor:'#F90303'}}>
                 <HeaderScreen />
-
                 <View style={{width:'100%',height:100,borderBottomWidth:2,borderColor:'#d6d7da'}}>
                     <Swiper style={{}} autoplay={true} autoplayTimeout = {5} showsButtons={true}
                         dot={<View style={{width: 0, height: 0}} />}
@@ -124,14 +123,14 @@ export default class PopularCategoryScreen extends Component{
 
             <ScrollView horizontal={false} style={{paddingLeft:5}}>
                 <View style={{flexDirection:'row',justifyContent:'flex-start',padding:10}}>
-                    <TouchableOpacity onPress={()=>this.SoupCategoryScreen()}><Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'#F90303',marginRight:5}}>Soup Categories <Icon type='Entypo' name="chevron-right" style={{fontSize:15,color:'#F90303'}} /></Text></Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>this.SoupCategoryScreen()}><Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'#fff',marginRight:5}}>Soup Categories <Icon type='Entypo' name="chevron-right" style={{fontSize:15,color:'#fff'}} /></Text></Text></TouchableOpacity>
                 </View>
                 <ScrollView horizontal={true}>
                     <View style={{flexDirection:'row'}}>
                         {
                             this.state.data.map((item, index)=>{
                                 return(
-                                    <View style={{width:180,paddingRight:5,paddingBottom:10}}>
+                                    <View style={{width:180,paddingRight:5}}>
                                         <TouchableOpacity onPress={()=>this.handClickCategory(item, index)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
                                             <ImageBackground
                                                 style={{height:150}}
@@ -162,14 +161,14 @@ export default class PopularCategoryScreen extends Component{
                 </ScrollView>
 
                 <View style={{flexDirection:'row',justifyContent:'flex-start',padding:10}}>
-                    <TouchableOpacity onPress={()=>this.FryCategoryScreen()}><Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Fry Categories <Icon type='Entypo' name="chevron-right" style={{fontSize:15,color:'#F90303'}} /></Text></Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>this.FryCategoryScreen()}><Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'#fff',marginRight:5}}>Fry Categories <Icon type='Entypo' name="chevron-right" style={{fontSize:15,color:'#fff'}} /></Text></Text></TouchableOpacity>
                 </View>
                 <ScrollView horizontal={true}>
                     <View style={{flexDirection:'row'}}>
                         {
                             this.state.data.map((item, index)=>{
                                 return(
-                                    <View style={{width:180,paddingRight:5,paddingBottom:10}}>
+                                    <View style={{width:180,paddingRight:5}}>
                                         <TouchableOpacity onPress={()=>this.handClickCategory(item, index)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
                                             <ImageBackground
                                                 style={{height:150}}
@@ -200,14 +199,14 @@ export default class PopularCategoryScreen extends Component{
                 </ScrollView>
 
                 <View style={{flexDirection:'row',justifyContent:'flex-start',padding:10}}>
-                    <TouchableOpacity onPress={()=>this.RoastCategoryScreen()}><Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Roast Categories <Icon type='Entypo' name="chevron-right" style={{fontSize:15,color:'#F90303'}} /></Text></Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>this.RoastCategoryScreen()}><Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'#fff',marginRight:5}}>Roast Categories <Icon type='Entypo' name="chevron-right" style={{fontSize:15,color:'#fff'}} /></Text></Text></TouchableOpacity>
                 </View>
                 <ScrollView horizontal={true}>
                     <View style={{flexDirection:'row'}}>
                         {
                             this.state.data.map((item, index)=>{
                                 return(
-                                    <View style={{width:180,paddingRight:5,paddingBottom:10}}>
+                                    <View style={{width:180,paddingRight:5}}>
                                         <TouchableOpacity onPress={()=>this.handClickCategory(item, index)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
                                             <ImageBackground
                                                 style={{height:150}}
@@ -238,14 +237,14 @@ export default class PopularCategoryScreen extends Component{
                 </ScrollView>
 
                 <View style={{flexDirection:'row',justifyContent:'flex-start',padding:10}}>
-                    <TouchableOpacity onPress={()=>this.DessertCategoryScreen()}><Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Dessert Categories <Icon type='Entypo' name="chevron-right" style={{fontSize:15,color:'#F90303'}} /></Text></Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>this.DessertCategoryScreen()}><Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'#fff',marginRight:5}}>Dessert Categories <Icon type='Entypo' name="chevron-right" style={{fontSize:15,color:'#fff'}} /></Text></Text></TouchableOpacity>
                 </View>
                 <ScrollView horizontal={true}>
                     <View style={{flexDirection:'row'}}>
                         {
                             this.state.data.map((item, index)=>{
                                 return(
-                                    <View style={{width:180,paddingRight:5,paddingBottom:10}}>
+                                    <View style={{width:180,paddingRight:5}}>
                                         <TouchableOpacity onPress={()=>this.handClickCategory(item, index)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
                                             <ImageBackground
                                                 style={{height:150}}
@@ -276,14 +275,14 @@ export default class PopularCategoryScreen extends Component{
                 </ScrollView>
 
                 <View style={{flexDirection:'row',justifyContent:'flex-start',padding:10}}>
-                    <TouchableOpacity onPress={()=>this.OtherCategoryScreen()}><Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'red',marginRight:5}}>Other Categories <Icon type='Entypo' name="chevron-right" style={{fontSize:15,color:'#F90303'}} /></Text></Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>this.OtherCategoryScreen()}><Text style={{fontWeight:'bold'}}><Text style={{fontWeight:'bold',color:'#fff',marginRight:5}}>Other Categories <Icon type='Entypo' name="chevron-right" style={{fontSize:15,color:'#fff'}} /></Text></Text></TouchableOpacity>
                 </View>
                 <ScrollView horizontal={true}>
                     <View style={{flexDirection:'row'}}>
                         {
                             this.state.data.map((item, index)=>{
                                 return(
-                                    <View style={{width:180,paddingRight:5,paddingBottom:10}}>
+                                    <View style={{width:180,paddingRight:5}}>
                                         <TouchableOpacity onPress={()=>this.handClickCategory(item, index)} style={{borderWidth:1,borderColor:'#d6d7da',borderTopLeftRadius:8,borderTopRightRadius:8}}>
                                             <ImageBackground
                                                 style={{height:150}}
