@@ -5,123 +5,125 @@ import { TabView, TabBar, SceneMap,TabViewAnimated } from 'react-native-tab-view
 import { Header, Icon } from 'native-base';
 import * as Progress from 'react-native-progress';
 import Rating from 'react-native-rating-simple';
+import {Actions} from 'react-native-router-flux'
 
 const fullStar = require('./Images/fullStar.png');
 const emptyStar = require('./Images/emptyStar.png');
 export default class DetailFoodInfo extends Component {
-  state = {
-      index: 0,
-    numComments: 0,
-    rating5: 2,
-    ratingNow: 0,
-    routes: [
-      { key: 'info', title: 'Info' },
-      { key: 'comment', title: 'Rate' },
-      { key: 'rate', title: 'Commemt' },
-    ],
-    rateStar: [
-        {
-            name: 'Excellent',
-            progress: 1,
-            percent: 100
-        },
-        {
-            name: 'Very Good',
-            progress: 0.7,
-            percent: 70
-        },
-        {
-            name: 'Good',
-            progress: 0.25,
-            percent: 25
-        },
-        {
-            name: 'Average',
-            progress: 0.2,
-            percent: 20
-        },
-        {
-            name: 'Poor',
-            progress: 0.1,
-            percent: 10
-        },
-    ],
-    commentFood:[
-        {
-            name: 'Koko Real',
-            like: 15,
-            dislike: 0,
-            comment: 11,
-            star: 3
-        },
-        {
-            name: 'Top King',
-            like: 4,
-            dislike: 0,
-            comment: 1,
-            star: 1
-        },
-        {
-            name: 'Koko Real',
-            like: 23,
-            dislike: 0,
-            comment: 0,
-            star: 4
-        },
-        {
-            name: 'Top Sound',
-            like: 7,
-            dislike: 0,
-            comment: 3,
-            star: 2
-        },
-        {
-            name: 'Nanoo Black',
-            like: 2,
-            dislike: 0,
-            comment: 3,
-            star: 3
-        },
-        {
-            name: 'Mr Ploak',
-            like: 75,
-            dislike: 5,
-            comment: 46,
-            star: 4
-        }
-    ],
-    DetailFoodInfo: [
-        {
-            ingredients: [
-                { id:'1',title:'Beef (baked meat)' },
-                { id:'2',title:'Salad' },
-                { id:'3',title:'tomato' },
-                { id:'3',title:'beans' },
-                { id:'3',title:'cucumber' },
-                { id:'3',title:'onion' },
-                { id:'3',title:'citrus' },
-                { id:'3',title:'Garlic' },
-                { id:'3',title:'oil' },
-                { id:'3',title:'sugar' },
-                { id:'3',title:'salt' },
-                { id:'3',title:'pepper' }, 
-                { id:'3',title:'oil' }, 
-            ],
-            How_to_cook: [
-                { id:'1',title:'Cut beef are small pieces' },
-                { id:'3',title:'Wash clean vegetable and place salad in a bowl' },
-                { id:'2',title:'The tomatoes split into two or not splitting and hinged in the pan, as in the picture, then placed on the salad' },
-                { id:'3',title:'Hands of cucumber are spun (width) arranged in or out of tomato circles' },
-                { id:'3',title:'Cut onions are as thin as squares in the center of the tomato and cucumber' },
-                { id:'3',title:'Cut short peas, fry (put some oil in the pan, leave the hot sauce, then rip it, cover it and cover it for a while) fry it and squeeze on onion' },
-                { id:'3',title:'Fill garlic with peas.' },
-                { id:'3',title:'Beef washed and squeezed over the bean' },
-            ],
-            Cooking: 'Put a little oil in the pan and let the hot meat pour in sugar, salt, pepper, oil (put a little more shape), slightly flushed and then pulled out. If too long, it will make the beef tough.Make a glass of pepper juice with your cabbage. If you like the egg, you can fry the peppermint on the beef. If you like the juice or tomato juice, try to steam for a little while with beef and then eat with hot rice.',
-        }
-        
-      ],
-  };
+    state = {
+        index: 0,
+        textComment: '',
+        listComment:[],
+        numComments: 0,
+        rating5: 2,
+        ratingNow: 0,
+        routes: [
+            { key: 'info', title: 'Info' },
+            { key: 'comment', title: 'Rate' },
+            { key: 'rate', title: 'Commemt' },
+        ],
+        rateStar: [
+            {
+                name: 'Excellent',
+                progress: 1,
+                percent: 100
+            },
+            {
+                name: 'Very Good',
+                progress: 0.7,
+                percent: 70
+            },
+            {
+                name: 'Good',
+                progress: 0.25,
+                percent: 25
+            },
+            {
+                name: 'Average',
+                progress: 0.2,
+                percent: 20
+            },
+            {
+                name: 'Poor',
+                progress: 0.1,
+                percent: 10
+            },
+        ],
+        commentFood:[
+            {
+                name: 'Koko Real',
+                like: 15,
+                dislike: 0,
+                comment: 11,
+                star: 3
+            },
+            {
+                name: 'Top King',
+                like: 4,
+                dislike: 0,
+                comment: 1,
+                star: 1
+            },
+            {
+                name: 'Koko Real',
+                like: 23,
+                dislike: 0,
+                comment: 0,
+                star: 4
+            },
+            {
+                name: 'Top Sound',
+                like: 7,
+                dislike: 0,
+                comment: 3,
+                star: 2
+            },
+            {
+                name: 'Nanoo Black',
+                like: 2,
+                dislike: 0,
+                comment: 3,
+                star: 3
+            },
+            {
+                name: 'Mr Ploak',
+                like: 75,
+                dislike: 5,
+                comment: 46,
+                star: 4
+            }
+        ],
+        DetailFoodInfo: [
+            {
+                ingredients: [
+                    { id:'1',title:'Beef (baked meat)' },
+                    { id:'2',title:'Salad' },
+                    { id:'3',title:'tomato' },
+                    { id:'3',title:'beans' },
+                    { id:'3',title:'cucumber' },
+                    { id:'3',title:'onion' },
+                    { id:'3',title:'citrus' },
+                    { id:'3',title:'Garlic' },
+                    { id:'3',title:'oil' },
+                    { id:'3',title:'sugar' },
+                    { id:'3',title:'salt' },
+                    { id:'3',title:'pepper' }, 
+                    { id:'3',title:'oil' }, 
+                ],
+                How_to_cook: [
+                    { id:'1',title:'Cut beef are small pieces' },
+                    { id:'3',title:'Wash clean vegetable and place salad in a bowl' },
+                    { id:'2',title:'The tomatoes split into two or not splitting and hinged in the pan, as in the picture, then placed on the salad' },
+                    { id:'3',title:'Hands of cucumber are spun (width) arranged in or out of tomato circles' },
+                    { id:'3',title:'Cut onions are as thin as squares in the center of the tomato and cucumber' },
+                    { id:'3',title:'Cut short peas, fry (put some oil in the pan, leave the hot sauce, then rip it, cover it and cover it for a while) fry it and squeeze on onion' },
+                    { id:'3',title:'Fill garlic with peas.' },
+                    { id:'3',title:'Beef washed and squeezed over the bean' },
+                ],
+                Cooking: 'Put a little oil in the pan and let the hot meat pour in sugar, salt, pepper, oil (put a little more shape), slightly flushed and then pulled out. If too long, it will make the beef tough.Make a glass of pepper juice with your cabbage. If you like the egg, you can fry the peppermint on the beef. If you like the juice or tomato juice, try to steam for a little while with beef and then eat with hot rice.',
+            }
+        ],
+    };
 
     _FoodInformationDetail=(item, key)=>{
         return(
@@ -171,7 +173,7 @@ export default class DetailFoodInfo extends Component {
             </ScrollView>
         )
     }
-    _FoodComment=(item, key)=>{
+    _FoodComment=()=>{
         return(
             <ScrollView>
                 <View style={{flex:1,paddingTop:5,paddingBottom:5,paddingLeft:10,paddingRight:10}} >
@@ -189,10 +191,12 @@ export default class DetailFoodInfo extends Component {
                                 underlineColorAndroid = "transparent"
                                 placeholder = "Type new comment here . . ."
                                 autoCapitalize = "none"
-                                onChangeText = {this.handlePassword}/>
+                                onChangeText = {(text)=> this.setState({textComment: text})}
+                                value={this.state.textComment}
+                            />
                         </View>
                         
-                        <TouchableOpacity style={{justifyContent:'center'}}><Icon type='MaterialIcons' name="send" style={{fontSize:25,color:'#707070'}} /></TouchableOpacity>
+                        <TouchableOpacity onPress={this.saveComment} style={{justifyContent:'center'}}><Icon type='MaterialIcons' name="send" style={{fontSize:25,color:'#707070'}} /></TouchableOpacity>
                     </View>
                     {
                         this.state.commentFood.map((item, key)=>{
@@ -305,19 +309,69 @@ export default class DetailFoodInfo extends Component {
             </ScrollView>
         )
     }
+
+    saveComment= () =>{
+        if(this.state.textComment!=""){
+            Alert.alert("Input comment")
+        }
+        else{
+            Alert.alert("Please input comment!")
+        }
+    }
+
+    _renderTabBar = props => {
+        const inputRange = props.navigationState.routes.map((x, i) => i);
+        return (
+          <View style={styles.tabBar}>
+            {props.navigationState.routes.map((route, i) => {
+              const color = props.position.interpolate({
+                inputRange,
+                outputRange: inputRange.map(
+                  inputIndex => (inputIndex === i ? '#ffffff' : '#cccccc')
+                ),
+              });
+              return (
+                <TouchableOpacity
+                    style={styles.tabItem}
+                    onPress={() => this.setState({ index: i })}>
+                    <Animated.Text style={{ color }}>{route.title}</Animated.Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        );
+      };
+      
   render() {
     return (
-        <TabView
-            navigationState={this.state}
-            renderScene={SceneMap({
-                info: ()=>this._FoodInformationDetail(),
-                comment: ()=>this._FoodRateStar(),
-                rate: ()=>this._FoodComment(),
-            })}
-            
-            onIndexChange={index => this.setState({ index })}
-            initialLayout={{ width: Dimensions.get('window').width }}
-        />
+        // <TabView
+        //     navigationState={this.state}
+        //     renderScene={SceneMap({
+        //         info: ()=>this._FoodInformationDetail(),
+        //         comment: ()=>this._FoodRateStar(),
+        //         rate: ()=>this._FoodComment(),
+        //     })}
+        //     renderTabBar={this._renderTabBar}
+        //     onIndexChange={index => this.setState({ index })}
+        //     initialLayout={{ width: Dimensions.get('window').width }}
+        // />
+        <View style={{flexDirection:'row',justifyContent:'space-between',marginBottom:10}}>
+                        <View style={{flex:5,flexDirection:'row',alignItems:'center'}}>
+                            <Image
+                                style={{width:45,height:45,borderRadius:100,borderWidth:1,marginRight:10}}
+                                source={{uri: 'http://greenwings.co/wp-content/uploads/2018/09/blank-head-profile-pic-for-a-man.jpg'}}
+                            />
+                            <TextInput style = {{flex:5,fontSize:15,color:'#707070'}}
+                                underlineColorAndroid = "transparent"
+                                placeholder = "Type new comment here . . ."
+                                autoCapitalize = "none"
+                                onChangeText = {(text)=> this.setState({textComment: text})}
+                                value={this.state.textComment}
+                            />
+                        </View>
+                        
+                        <TouchableOpacity onPress={this.saveComment} style={{justifyContent:'center'}}><Icon type='MaterialIcons' name="send" style={{fontSize:25,color:'#707070'}} /></TouchableOpacity>
+                    </View>
     );
   }
 }
@@ -325,4 +379,14 @@ const styles = StyleSheet.create({
     scene: {
       flex: 1,
     },
-  });
+    tabBar: {
+        flexDirection: 'row',
+        backgroundColor:'#EB011C'
+    },
+        tabItem: {
+        flex: 1,
+        alignItems: 'center',
+        padding: 16,
+        fontWeight:'bold',
+    },
+});
