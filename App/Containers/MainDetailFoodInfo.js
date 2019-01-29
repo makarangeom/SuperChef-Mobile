@@ -6,7 +6,9 @@ import DetailFood from './DetailFoodInfo';
 import HeaderScreen from './HeaderScreen'
 import * as Progress from 'react-native-progress';
 import Rating from 'react-native-rating-simple';
+import moment from 'moment';
 
+const currentDateTime = moment().format('h:mm:ss a')
 const fullStar = require('./Images/fullStar.png');
 const emptyStar = require('./Images/emptyStar.png');
 const Width = Dimensions.get('window').width
@@ -19,6 +21,7 @@ export default class MainDetailFoodInfo extends Component{
             index: 0,
             textComment: '',
             numComments: 0,
+            numRating:0,
             rating5: 2,
             ratingNow: 0,
             routes: [
@@ -54,6 +57,7 @@ export default class MainDetailFoodInfo extends Component{
                 },
             ],
             listComment:[],
+            listRatingStar:[],
             DetailFoodInfo: [
                 {
                     ingredients: [
@@ -91,10 +95,10 @@ export default class MainDetailFoodInfo extends Component{
     }
 
     componentDidMount(){
-        console.tron.log(this.state.eachItem)
+        console.tron.log(currentDateTime)
         console.tron.log("=========")
         console.tron.log(this.state.textComment)
-        console.tron.log(this.state.listComment)
+        console.tron.log(this.state.listRatingStar)
     }
 
     handClickCategory=(item, key)=>{
@@ -108,7 +112,8 @@ export default class MainDetailFoodInfo extends Component{
                 like: 15,
                 dislike: 0,
                 comment: 11,
-                star: 3
+                star: 3,
+                dateTime: currentDateTime
             })
             this.setState({ comment, textComment: '', numComments: this.state.numComments+1 });
         }
@@ -116,6 +121,21 @@ export default class MainDetailFoodInfo extends Component{
             Alert.alert("Please input comment!")
         }
     }
+
+    handPressRatingStar=()=>{
+        var starRate = this.state.listRatingStar
+        console.tron.log(this.state.ratingNow)
+        if(this.state.ratingNow!=0){
+            starRate.push({
+                name: 'KoKo Real',
+                star: this.state.ratingNow,
+                dateTime: currentDateTime
+            })
+            this.setState({starRate, ratingNow:0,numRating: this.state.numRating+1})
+        }else{null}
+        
+    }
+
     handPressTabView=(item, index)=>{
         this.state.statusTabBar.map((itemStatus, indexStatus)=>{
             if(index==indexStatus) this.state.statusTabBar[indexStatus] = true
@@ -218,7 +238,7 @@ export default class MainDetailFoodInfo extends Component{
                                         starSize={40}
                                     />
                                 </View>
-                                <Text style={{fontSize:15,color:'#EB011C',fontWeight:'bold'}}>({this.state.numComments})</Text>
+                                <Text style={{fontSize:15,color:'#EB011C',fontWeight:'bold'}}>({this.state.numRating})</Text>
                             </View>
                             {
                                 this.state.rateStar.map((item, key)=>{
@@ -243,12 +263,16 @@ export default class MainDetailFoodInfo extends Component{
                                 />
                             </View>
                             
-                            <TouchableOpacity style={{flex:1,paddingBottom:13,paddingTop:13,borderWidth:1,borderColor:'#EB011C',backgroundColor:'#EB011C',borderRadius:25,marginBottom:5,marginTop:5}}>
-                                <Text style={{fontSize:13,color:'#FFFFFF',textAlign:'center'}}>Rating Now</Text>
-                            </TouchableOpacity>
                             {
-                                this.state.listComment.map((item, key)=>{
-                                    this.state.numComments = key + 1
+                                this.state.ratingNow>0?
+                                    <TouchableOpacity onPress={this.handPressRatingStar} style={{flex:1,paddingBottom:13,paddingTop:13,borderWidth:1,borderColor:'#EB011C',backgroundColor:'#EB011C',borderRadius:25,marginBottom:5,marginTop:5}}>
+                                        <Text style={{fontSize:13,color:'#FFFFFF',textAlign:'center'}}>Rating Now</Text>
+                                    </TouchableOpacity> 
+                                :null
+                            }
+                            
+                            {
+                                this.state.listRatingStar.map((item, key)=>{
                                     return(
                                         <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                                             <View style={{flexDirection:'row',alignItems:'center',marginTop:10,marginBottom:10}}>
@@ -259,7 +283,7 @@ export default class MainDetailFoodInfo extends Component{
 
                                                 <View style={{flexDirection:'column'}}>
                                                     <Text style={{fontSize:15,color:'#707070'}}>{item.name}</Text>
-                                                    <Text style={{fontSize:13,color:'#707070'}}>Date</Text>
+                                                    <Text style={{fontSize:13,color:'#707070'}}>{moment(item.dateTime,'hh:mm:ss').fromNow()}</Text>
                                                 </View>
                                             </View>
                                             
@@ -324,6 +348,7 @@ export default class MainDetailFoodInfo extends Component{
                                                             <TouchableOpacity style={{justifyContent:'center',paddingRight:5}}><Icon type='MaterialIcons' name="thumb-up" style={{fontSize:15,color:'#707070'}} /></TouchableOpacity><Text style={{fontSize:13,color:'#707070'}}>{item.like}</Text>
                                                             <TouchableOpacity style={{justifyContent:'center',paddingRight:5,marginLeft:20}}><Icon type='MaterialIcons' name="thumb-down" style={{fontSize:15,color:'#707070'}} /></TouchableOpacity><Text style={{fontSize:13,color:'#707070'}}>{item.dislike}</Text>
                                                             <TouchableOpacity style={{justifyContent:'center',paddingRight:5,marginLeft:20}}><Icon type='MaterialIcons' name="comment" style={{fontSize:15,color:'#707070'}} /></TouchableOpacity><Text style={{fontSize:13,color:'#707070'}}>{item.comment}</Text>
+                                                            <TouchableOpacity style={{justifyContent:'center',paddingRight:5,marginLeft:20}}><Text style={{fontSize:13,color:'#707070'}}>{moment(item.dateTime,'hh:mm:ss').fromNow()}</Text></TouchableOpacity>
                                                         </View>
                                                     </View>
                                                 </View>
