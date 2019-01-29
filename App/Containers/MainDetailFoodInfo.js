@@ -329,7 +329,7 @@ export default class MainDetailFoodInfo extends Component{
                                         />
                                     </View>
                                     
-                                    <TouchableOpacity onPress={this.saveComment} style={{justifyContent:'center'}}><Icon type='MaterialIcons' name="send" style={{fontSize:25,color:'#707070'}} /></TouchableOpacity>
+                                    {this.state.textComment!=''?<TouchableOpacity onPress={this.saveComment} style={{justifyContent:'center'}}><Icon type='MaterialIcons' name="send" style={{fontSize:25,color:'#707070'}} /></TouchableOpacity>:null}
                                 </View>
                                 {
                                     this.state.listComment.map((item, key)=>{
