@@ -42,7 +42,10 @@ export default class SoupCategoryScreen extends Component{
                         borderTopRightRadius={8}
                         source={{uri:item.img_uri}}
                     >
-                        <View style={{width:'100%',marginTop:110,height:70,backgroundColor:'rgba(0,0,0,.6)',padding:5}}>
+                        <View style={{width:'100%',height:110,padding:5,justifyContent:'center'}}>
+                            <Icon type='FontAwesome' name="play-circle" style={{fontSize:50,color:'#bfbfbf',textAlign:'center'}} />
+                        </View>
+                        <View style={{width:'100%',height:70,backgroundColor:'rgba(0,0,0,.6)',padding:5}}>
                             <Text style={{flex:2.5,color:'#ffffff',fontWeight:'bold'}}>{item.name}</Text>
                             <View style={{flex:1,flexDirection:'row',justifyContent:'space-between'}}>
                                 <Rating
@@ -79,7 +82,10 @@ export default class SoupCategoryScreen extends Component{
                                                 style={{width:'100%',height:180}}
                                                 source={{uri:item.img_uri}}
                                             >
-                                                <View style={{marginTop:100,width:'100%',height:80,backgroundColor:'rgba(0,0,0,.6)',padding:10}}>
+                                                <View style={{width:'100%',height:100,padding:5,justifyContent:'center'}}>
+                                                    <Icon type='FontAwesome' name="play-circle" style={{fontSize:50,color:'#bfbfbf',textAlign:'center'}} />
+                                                </View>
+                                                <View style={{width:'100%',height:80,backgroundColor:'rgba(0,0,0,.6)',padding:10}}>
                                                     <View style={{flex:2.8}}>
                                                         <Text style={{color:'#ffffff',fontWeight:'bold'}}>Soups</Text>
                                                         <Text style={{color:'#ffffff'}}>Soup Black Chicken</Text>

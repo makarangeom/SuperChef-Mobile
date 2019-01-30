@@ -137,8 +137,11 @@ export default class PopularCategoryScreen extends Component{
                                                 borderTopLeftRadius={8}
                                                 borderTopRightRadius={8}
                                                 source={{uri:item.img_uri}}
-                                            >
-                                                <View style={{width:'100%',marginTop:90,height:60,backgroundColor:'#FFFFFF',padding:5}}>
+                                            >   
+                                                <View style={{width:'100%',height:90,padding:5,justifyContent:'center'}}>
+                                                    <Icon type='FontAwesome' name="play-circle" style={{fontSize:35,color:'#bfbfbf',textAlign:'center'}} />
+                                                </View>
+                                                <View style={{width:'100%',height:60,backgroundColor:'#FFFFFF',padding:5}}>
                                                     <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
                                                     <View style={{flex:1.5,flexDirection:'row',justifyContent:'space-between'}}>
                                                         <Rating
@@ -176,7 +179,10 @@ export default class PopularCategoryScreen extends Component{
                                                 borderTopRightRadius={8}
                                                 source={{uri:item.img_uri}}
                                             >
-                                                <View style={{width:'100%',marginTop:90,height:60,backgroundColor:'#FFFFFF',padding:5}}>
+                                                <View style={{width:'100%',height:90,padding:5,justifyContent:'center'}}>
+                                                    <Icon type='FontAwesome' name="play-circle" style={{fontSize:35,color:'#bfbfbf',textAlign:'center'}} />
+                                                </View>
+                                                <View style={{width:'100%',height:60,backgroundColor:'#FFFFFF',padding:5}}>
                                                     <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
                                                     <View style={{flex:1.5,flexDirection:'row',justifyContent:'space-between'}}>
                                                         <Rating
@@ -214,7 +220,10 @@ export default class PopularCategoryScreen extends Component{
                                                 borderTopRightRadius={8}
                                                 source={{uri:item.img_uri}}
                                             >
-                                                <View style={{width:'100%',marginTop:90,height:60,backgroundColor:'#FFFFFF',padding:5}}>
+                                                <View style={{width:'100%',height:90,padding:5,justifyContent:'center'}}>
+                                                    <Icon type='FontAwesome' name="play-circle" style={{fontSize:35,color:'#bfbfbf',textAlign:'center'}} />
+                                                </View>
+                                                <View style={{width:'100%',height:60,backgroundColor:'#FFFFFF',padding:5}}>
                                                     <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
                                                     <View style={{flex:1.5,flexDirection:'row',justifyContent:'space-between'}}>
                                                         <Rating
@@ -252,7 +261,10 @@ export default class PopularCategoryScreen extends Component{
                                                 borderTopRightRadius={8}
                                                 source={{uri:item.img_uri}}
                                             >
-                                                <View style={{width:'100%',marginTop:90,height:60,backgroundColor:'#FFFFFF',padding:5}}>
+                                                <View style={{width:'100%',height:90,padding:5,justifyContent:'center'}}>
+                                                    <Icon type='FontAwesome' name="play-circle" style={{fontSize:35,color:'#bfbfbf',textAlign:'center'}} />
+                                                </View>
+                                                <View style={{width:'100%',height:60,backgroundColor:'#FFFFFF',padding:5}}>
                                                     <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
                                                     <View style={{flex:1.5,flexDirection:'row',justifyContent:'space-between'}}>
                                                         <Rating
@@ -290,7 +302,10 @@ export default class PopularCategoryScreen extends Component{
                                                 borderTopRightRadius={8}
                                                 source={{uri:item.img_uri}}
                                             >
-                                                <View style={{width:'100%',marginTop:90,height:60,backgroundColor:'#FFFFFF',padding:5}}>
+                                                <View style={{width:'100%',height:90,padding:5,justifyContent:'center'}}>
+                                                    <Icon type='FontAwesome' name="play-circle" style={{fontSize:35,color:'#bfbfbf',textAlign:'center'}} />
+                                                </View>
+                                                <View style={{width:'100%',height:60,backgroundColor:'#FFFFFF',padding:5}}>
                                                     <Text style={{flex:2.5,color:'#707070',fontWeight:'bold'}}>{item.name}</Text>
                                                     <View style={{flex:1.5,flexDirection:'row',justifyContent:'space-between'}}>
                                                         <Rating

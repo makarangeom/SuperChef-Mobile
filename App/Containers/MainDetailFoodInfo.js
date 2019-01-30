@@ -156,7 +156,7 @@ export default class MainDetailFoodInfo extends Component{
                                 source={{uri:this.state.eachItem.img_uri}}
                             >
                                 <View style={{width:'100%',height:180,backgroundColor:'rgba(0,0,0,.6)',justifyContent:'center',alignItems:'center'}}>
-                                    <Icon type='FontAwesome' name="play-circle" style={{fontSize:50,color:'#FFAF00'}} />
+                                    <Icon type='FontAwesome' name="play-circle" style={{fontSize:50,color:'#bfbfbf'}} />
                                 </View>
                             </ImageBackground>
                         </TouchableOpacity>

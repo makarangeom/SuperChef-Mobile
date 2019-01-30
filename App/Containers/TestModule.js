@@ -1,50 +1,51 @@
-import React,{Component} from 'react';
-import {View,Text,ScrollView,TouchableOpacity,TextInput,StyleSheet,Alert} from 'react-native';
-import moment from 'moment';
+import React, { Component } from 'react';
 
-const date = moment().format('h:mm:ss a')
-const currentTime = moment(date,'hh:mm:ss').fromNow();
-const currentDate = moment('28-01-2019','DD-MM-YYYY').fromNow();
-export default class TestModule extends Component{
-    constructor(props){
-        super(props);
-        this.state={
-            hours:0,
-            statuTime:'',
-            routes: [
-                { key: 'info', title: 'Info', date: '2:41:43 am' },
-                { key: 'comment', title: 'Rate', date: '1:40:43 am' },
-                { key: 'rate', title: 'Commemt', date: '2:30:00 am' },
-            ],
-        }
-    }
+import { AppRegistry, StyleSheet, Text, View } from 'react-native';
 
-    componentDidMount(){
-        console.tron.log(date)
-    }
+export default class TestModule extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
 
-    render(){
-        return(
-            <View style={{flex:1}}>
-                <Text style={{fontSize:15,color:'black'}}>{currentDate}</Text>
-                <Text style={{fontSize:15,color:'black'}}>{currentTime}</Text>
-                <Text style={{fontSize:15,color:'black'}}>{date}</Text>
-                {
-                    this.state.routes.map((item, index)=>{
-                        return(
-                            <View style={{}}>
-                                {
-                                    0<1?
-                                    <Text style={{fontSize:15,color:'black'}}>{moment(item.date,'hh:mm:ss').fromNow()}</Text>
-                                    :
-                                    <Text style={{fontSize:15,color:'black'}}>{moment('28-01-2019','DD-MM-YYYY').fromNow()}</Text>
-                                }
-                            </View>
-                        )
-                    })
-                }
-                <TouchableOpacity onPress={this}><Text style={{fontSize:15,color:'black',textAlign:'center'}}>Toch Me</Text></TouchableOpacity>
-            </View>
-        );
-    }
+        {/* <Video
+          source={require('./Images/video.mp4')}
+          rate={1.0}
+          volume={1.0}
+          muted={false}
+          resizeMode={"cover"}
+          repeat
+          style={styles.video}
+        /> */}
+
+        <View style={styles.content}>
+          <Text style={styles.text}>Hello</Text>
+        </View>
+
+      </View>
+    );
+  }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  video: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  text: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+});
+
+AppRegistry.registerComponent('App', () => App);
