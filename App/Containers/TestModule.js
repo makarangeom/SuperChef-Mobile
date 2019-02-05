@@ -1,336 +1,134 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  PixelRatio,
-  Dimensions,
-  Platform,
-  
-} from 'react-native';
-import YouTube, { YouTubeStandaloneIOS, YouTubeStandaloneAndroid } from 'react-native-youtube';
 
-export default class TestModule extends React.Component {
+import React, { Component } from "react";
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
+
+import Video from "react-native-video";
+import * as Progress from 'react-native-progress';
+
+import Icon from "react-native-vector-icons/FontAwesome";
+
+function secondsToTime(time) {
+  return ~~(time / 60) + ":" + (time % 60 < 10 ? "0" : "") + time % 60;
+}
+
+export default class TestModule extends Component {
   state = {
-    isReady: false,
-    status: null,
-    quality: null,
-    error: null,
-    isPlaying: true,
-    isLooping: true,
+    paused: false,
+    progress: 0,
     duration: 0,
-    currentTime: 0,
-    fullscreen: false,
-    containerMounted: false,
-    containerWidth: null,
+  };
+
+  handleMainButtonTouch = () => {
+    if (this.state.progress >= 1) {
+      this.player.seek(0);
+    }
+
+    this.setState(state => {
+      return {
+        paused: !state.paused,
+      };
+    });
+  };
+
+  handleProgressPress = e => {
+    const position = e.nativeEvent.locationX;
+    const progress = (position / 250) * this.state.duration;
+    const isPlaying = !this.state.paused;
+    
+    this.player.seek(progress);
+  };
+
+  handleProgress = progress => {
+    this.setState({
+      progress: progress.currentTime / this.state.duration,
+    });
+  };
+
+  handleEnd = () => {
+    this.setState({ paused: true });
+  };
+
+  handleLoad = meta => {
+    this.setState({
+      duration: meta.duration,
+    });
   };
 
   render() {
+    const { width } = Dimensions.get("window");
+    const height = width * 0.5625;
+
     return (
-        <ScrollView
-          style={styles.container}
-          onLayout={({ nativeEvent: { layout: { width } } }) => {
-            if (!this.state.containerMounted) this.setState({ containerMounted: true });
-            if (this.state.containerWidth !== width) this.setState({ containerWidth: width });
-          }}
-        >
-          {this.state.containerMounted && (
-            <YouTube
-              ref={component => {
-                this._youTubeRef = component;
-              }}
-              // You must have an API Key for the player to load in Android
-              apiKey="AIzaSyB3P_JdZ6Ax8DMtGaVLUNqrCV71dMrIiWI"
-              // Un-comment one of videoId / videoIds / playlist.
-              // You can also edit these props while Hot-Loading in development mode to see how
-              // it affects the loaded native module
-              // videoId="ncw4ISEU5ik"
-              videoIds={['HcXNPI-IPPM', 'XXlZfc1TrD0', 'czcjU1w-c6k', 'uMK0prafzw0']}
-              playlistId="PLF797E961509B4EB5"
-              play={this.state.isPlaying}
-              loop={this.state.isLooping}
-              fullscreen={this.state.fullscreen}
-              controls={1}
-              style={[
-                { height: PixelRatio.roundToNearestPixel(this.state.containerWidth / (16 / 9)) },
-                styles.player,
-              ]}
-              onError={e => this.setState({ error: e.error })}
-              onReady={e => this.setState({ isReady: true })}
-              onChangeState={e => this.setState({ status: e.state })}
-              onChangeQuality={e => this.setState({ quality: e.quality })}
-              onChangeFullscreen={e => this.setState({ fullscreen: e.isFullscreen })}
-              onProgress={e => this.setState({ duration: e.duration, currentTime: e.currentTime })}
-            />
-          )}
-
-          {/* Playing / Looping */}
-          <View style={styles.buttonGroup}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this.setState(s => ({ isPlaying: !s.isPlaying }))}
-            >
-              <Text style={styles.buttonText}>
-                {this.state.status == 'playing' ? 'Pause' : 'Play'}
-              </Text>
+      <View style={styles.container}>
+        <View>
+          <Video
+            paused={this.state.paused}
+            source={{uri: "https://r2---sn-npoeened.googlevideo.com/videoplayback?ipbits=0&expire=1549362839&source=youtube&sparams=clen,dur,ei,expire,gir,id,ip,ipbits,itag,lmt,mime,mip,mm,mn,ms,mv,pl,ratebypass,requiressl,source&itag=18&lmt=1452083292253282&ip=38.126.112.68&id=o-ALr8PTTRfc5A21vnvge6RDAxhpHsKz14Ax6SiExtN-pO&requiressl=yes&dur=233.615&pl=24&ratebypass=yes&fvip=2&ei=NxJZXLGiE4ThkgaIrpBw&c=WEB&mime=video%2Fmp4&signature=7043FB7EC6978EB6A804D1B45340DDCEBAA89060.2C3E0D7166E175E62BC30BAD7640FEDBCF9D1246&key=cms1&gir=yes&clen=9589412&mip=136.228.128.32&redirect_counter=1&cm2rm=sn-npoxu-2oie7e&req_id=62453039a5c8a3ee&cms_redirect=yes&mm=29&mn=sn-npoeened&ms=rdu&mt=1549341213&mv=m&ir=1&rr=12.mp4"}}
+            style={{ width: "100%", height }}
+            resizeMode="contain"
+            onLoad={this.handleLoad}
+            onProgress={this.handleProgress}
+            onEnd={this.handleEnd}
+            ref={ref => {
+              this.player = ref;
+            }}
+          />
+          <View style={styles.controls}>
+            <TouchableOpacity onPress={this.handleMainButtonTouch}>
+              <Icon name={!this.state.paused ? "pause" : "play"} size={20} color="#FFF" />
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this.setState(s => ({ isLooping: !s.isLooping }))}
-            >
-              <Text style={styles.buttonText}>
-                {this.state.isLooping ? 'Looping' : 'Not Looping'}
-              </Text>
-            </TouchableOpacity>
-          </View>
-
-          {/* Previous / Next video */}
-          <View style={styles.buttonGroup}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this._youTubeRef && this._youTubeRef.previousVideo()}
-            >
-              <Text style={styles.buttonText}>Previous Video</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this._youTubeRef && this._youTubeRef.nextVideo()}
-            >
-              <Text style={styles.buttonText}>Next Video</Text>
-            </TouchableOpacity>
-          </View>
-
-          {/* Go To Specific time in played video with seekTo() */}
-          <View style={styles.buttonGroup}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this._youTubeRef && this._youTubeRef.seekTo(15)}
-            >
-              <Text style={styles.buttonText}>15 Seconds</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this._youTubeRef && this._youTubeRef.seekTo(2 * 60)}
-            >
-              <Text style={styles.buttonText}>2 Minutes</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this._youTubeRef && this._youTubeRef.seekTo(15 * 60)}
-            >
-              <Text style={styles.buttonText}>15 Minutes</Text>
-            </TouchableOpacity>
-          </View>
-
-          {/* Play specific video in a videoIds array by index */}
-          {this._youTubeRef &&
-            this._youTubeRef.props.videoIds &&
-            Array.isArray(this._youTubeRef.props.videoIds) && (
-              <View style={styles.buttonGroup}>
-                {this._youTubeRef.props.videoIds.map((videoId, i) => (
-                  <TouchableOpacity
-                    key={i}
-                    style={styles.button}
-                    onPress={() => this._youTubeRef && this._youTubeRef.playVideoAt(i)}
-                  >
-                    <Text style={[styles.buttonText, styles.buttonTextSmall]}>{`Video ${i}`}</Text>
-                  </TouchableOpacity>
-                ))}
+            <TouchableOpacity onPress={this.handleProgressPress}>
+              <View>
+                <Progress.Bar
+                  progress={this.state.progress}
+                  color="#FFF"
+                  unfilledColor="rgba(255,255,255,.5)"
+                  borderColor="#FFF"
+                  width={250}
+                  height={8}
+                />
               </View>
-            )}
-
-          {/* Get current played video's position index when playing videoIds (and playlist in iOS) */}
-          <View style={styles.buttonGroup}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() =>
-                this._youTubeRef &&
-                this._youTubeRef
-                  .videosIndex()
-                  .then(index => this.setState({ videosIndex: index }))
-                  .catch(errorMessage => this.setState({ error: errorMessage }))
-              }
-            >
-              <Text style={styles.buttonText}>Get Videos Index: {this.state.videosIndex}</Text>
             </TouchableOpacity>
+
+            <Text style={styles.duration}>
+              {secondsToTime(Math.floor(this.state.progress * this.state.duration))}
+            </Text>
           </View>
-
-          {/* Fullscreen */}
-          {!this.state.fullscreen && (
-            <View style={styles.buttonGroup}>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => this.setState({ fullscreen: true })}
-              >
-                <Text style={styles.buttonText}>Set Fullscreen</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-
-          {/* Update Progress & Duration (Android) */}
-          {Platform.OS === 'android' && (
-            <View style={styles.buttonGroup}>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() =>
-                  this._youTubeRef
-                    ? this._youTubeRef
-                        .currentTime()
-                        .then(currentTime => this.setState({ currentTime }))
-                        .catch(errorMessage => this.setState({ error: errorMessage }))
-                    : this._youTubeRef
-                        .duration()
-                        .then(duration => this.setState({ duration }))
-                        .catch(errorMessage => this.setState({ error: errorMessage }))
-                }
-              >
-                <Text style={styles.buttonText}>Update Progress & Duration (Android)</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-
-          {/* Standalone Player (iOS) */}
-          {Platform.OS === 'ios' &&
-            YouTubeStandaloneIOS && (
-              <View style={styles.buttonGroup}>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() =>
-                    YouTubeStandaloneIOS.playVideo('3uaVXIm1dx8')
-                      .then(() => console.log('iOS Standalone Player Finished'))
-                      .catch(errorMessage => this.setState({ error: errorMessage }))
-                  }
-                >
-                  <Text style={styles.buttonText}>Launch Standalone Player</Text>
-                </TouchableOpacity>
-              </View>
-            )}
-
-          {/* Standalone Player (Android) */}
-          {Platform.OS === 'android' &&
-            YouTubeStandaloneAndroid && (
-              <View style={styles.buttonGroup}>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() =>
-                    YouTubeStandaloneAndroid.playVideo({
-                      apiKey: 'AIzaSyB3P_JdZ6Ax8DMtGaVLUNqrCV71dMrIiWI',
-                      videoId: '3uaVXIm1dx8',
-                      autoplay: true,
-                      lightboxMode: false,
-                      startTime: 124.5,
-                    })
-                      .then(() => console.log('Android Standalone Player Finished'))
-                      .catch(errorMessage => this.setState({ error: errorMessage }))
-                  }
-                >
-                  <Text style={styles.buttonText}>Standalone: One Video</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() =>
-                    YouTubeStandaloneAndroid.playVideos({
-                      apiKey: 'AIzaSyB3P_JdZ6Ax8DMtGaVLUNqrCV71dMrIiWI',
-                      videoIds: ['HcXNPI-IPPM', 'XXlZfc1TrD0', 'czcjU1w-c6k', 'uMK0prafzw0'],
-                      autoplay: false,
-                      lightboxMode: true,
-                      startIndex: 1,
-                      startTime: 99.5,
-                    })
-                      .then(() => console.log('Android Standalone Player Finished'))
-                      .catch(errorMessage => this.setState({ error: errorMessage }))
-                  }
-                >
-                  <Text style={styles.buttonText}>Videos</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() =>
-                    YouTubeStandaloneAndroid.playPlaylist({
-                      apiKey: 'AIzaSyB3P_JdZ6Ax8DMtGaVLUNqrCV71dMrIiWI',
-                      playlistId: 'PLF797E961509B4EB5',
-                      autoplay: false,
-                      lightboxMode: false,
-                      startIndex: 2,
-                      startTime: 100.5,
-                    })
-                      .then(() => console.log('Android Standalone Player Finished'))
-                      .catch(errorMessage => this.setState({ error: errorMessage }))
-                  }
-                >
-                  <Text style={styles.buttonText}>Playlist</Text>
-                </TouchableOpacity>
-              </View>
-            )}
-
-          {/* Reload iFrame for updated props (Only needed for iOS) */}
-          {Platform.OS === 'ios' && (
-            <View style={styles.buttonGroup}>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => this._youTubeRef && this._youTubeRef.reloadIframe()}
-              >
-                <Text style={styles.buttonText}>Reload iFrame (iOS)</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-
-          <Text style={styles.instructions}>
-            {this.state.isReady ? 'Player is ready' : 'Player setting up...'}
-          </Text>
-          <Text style={styles.instructions}>Status: {this.state.status}</Text>
-          <Text style={styles.instructions}>Quality: {this.state.quality}</Text>
-
-          {/* Show Progress */}
-          <Text style={styles.instructions}>
-            Progress: {Math.trunc(this.state.currentTime)}s ({Math.trunc(this.state.duration / 60)}:{Math.trunc(
-              this.state.duration % 60,
-            )}s)
-            {Platform.OS !== 'ios' && <Text> (Click Update Progress & Duration)</Text>}
-          </Text>
-
-          <Text style={styles.instructions}>
-            {this.state.error ? 'Error: ' + this.state.error : ''}
-          </Text>
-        </ScrollView>
+        </View>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    flex: 1,
+    paddingTop: 250,
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  controls: {
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    height: 48,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    position: "absolute",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    paddingHorizontal: 10,
   },
-  buttonGroup: {
-    flexDirection: 'row',
-    alignSelf: 'center',
+  mainButton: {
+    marginRight: 15,
   },
-  button: {
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-    alignSelf: 'center',
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'blue',
-  },
-  buttonTextSmall: {
-    fontSize: 15,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  player: {
-    alignSelf: 'stretch',
-    marginVertical: 10,
+  duration: {
+    color: "#FFF",
+    marginLeft: 15,
   },
 });

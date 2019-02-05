@@ -32,7 +32,7 @@ export default class name extends Component{
                             resizeMode= 'cover'
                             borderTopLeftRadius={8}
                             borderTopRightRadius={8}
-                            source={require('./Images/splashscreen2.jpg')}
+                            source={require('./Images/splashscreen.jpg')}
                         >
                             <View style={{flex:1,width:Window.width,height:Window.height,backgroundColor:'rgba(0,0,0,.4)',}}>
                                 <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
@@ -43,8 +43,6 @@ export default class name extends Component{
                     :
                         this.changeScreen()
                 }
-                
-                    
             </View>
         );
     }

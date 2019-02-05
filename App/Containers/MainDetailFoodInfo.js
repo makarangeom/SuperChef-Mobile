@@ -7,6 +7,7 @@ import HeaderScreen from './HeaderScreen'
 import * as Progress from 'react-native-progress';
 import Rating from 'react-native-rating-simple';
 import moment from 'moment';
+import Video from 'react-native-video';
 
 const currentDateTime = moment().format('h:mm:ss a')
 const fullStar = require('./Images/fullStar.png');
@@ -24,6 +25,13 @@ export default class MainDetailFoodInfo extends Component{
             numRating:0,
             rating5: 2,
             ratingNow: 0,
+            rate: 1,
+            volume: 1,
+            muted: false,
+            resizeMode: 'contain',
+            duration: 0.0,
+            currentTime: 0.0,
+            paused: false,
             routes: [
                 { key: 'info', title: 'Info' },
                 { key: 'comment', title: 'Rate' },
@@ -148,20 +156,27 @@ export default class MainDetailFoodInfo extends Component{
         return (
             <View style={{height:'100%',backgroundColor:'#F2EFF8'}}>
                 <HeaderScreen/>
-                <View style={{width:'100%',height:185,marginBottom:-5}}>
-                    <View style={{}}>
-                        <TouchableOpacity onPress={()=>this.handClickCategory(item, key)} style={{width:'100%'}}>
-                            <ImageBackground
-                                style={{width:'100%',height:180}}
-                                source={{uri:this.state.eachItem.img_uri}}
-                            >
-                                <View style={{width:'100%',height:180,backgroundColor:'rgba(0,0,0,.6)',justifyContent:'center',alignItems:'center'}}>
-                                    <Icon type='FontAwesome' name="play-circle" style={{fontSize:50,color:'#bfbfbf'}} />
+                <TouchableOpacity style={{height:180,width:Width,backgroundColor:'rgba(0,0,0,.6)'}} onPress={() => {this.setState({paused: !this.state.paused})}}>
+                    <Video 
+                        source={{uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"}}
+                        style={{height:231,width:Width}}
+                        rate={this.state.rate}
+                        paused={this.state.paused}
+                        volume={this.state.volume}
+                        muted={this.state.muted}
+                        resizeMode={this.state.resizeMode}
+                        onLoad={this.onLoad}
+                        onProgress={this.onProgress}
+                        onEnd={() => { console.log('Done!') }}
+                        repeat={true} />
+                        {
+                            this.state.paused?
+                                <View style={{width:'100%',position:'absolute',height:180,justifyContent:'center',alignItems:'center'}}>
+                                    <Icon type='FontAwesome' name="play-circle" style={{fontSize:50,color:'#bfbfbf',position:'absolute'}} />
                                 </View>
-                            </ImageBackground>
-                        </TouchableOpacity>
-                    </View> 
-                </View>
+                            :null
+                        }
+                </TouchableOpacity>
                 <View style={{flexDirection:'row',justifyContent:'center',backgroundColor:'#EB011C',height:45}}>
                     {
                         this.state.tabBarMenu.map((item, index)=>{

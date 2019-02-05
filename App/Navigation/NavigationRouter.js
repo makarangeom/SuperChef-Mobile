@@ -22,7 +22,7 @@ class NavigationRouter extends Component{
     onEnter=(statusHeader, statusIcon, title)=>{
         this.props.setHeader({statusHeader: statusHeader , statusIcon: statusIcon, title: title})
     }
-
+ 
     render(){
         return(
             <Router>
